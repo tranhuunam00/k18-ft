@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="content">
+      Hover me!
+      <div class="popup">
+        <div>Tiếng việt</div>
+        <div>Tiếng ANh</div>
+      </div>
+    </div>
+    <div class="res"></div>
+  </body>
+</html>
+
+<style>
+  .content {
+    width: 100px;
+    height: 1000px;
+    border-radius: 20px;
+    background-color: #1ba816;
+    position: relative;
+  }
+  .content:hover > .popup {
+    display: block;
+    position: absolute;
+    top: 30px;
+    background-color: aqua;
+  }
+  .popup {
+    display: none;
+  }
+  .content::after {
+    content: "content";
+    width: 100px;
+    height: 20px;
+    position: absolute;
+    top: 10px;
+    left: 0;
+    background-color: yellow;
+    color: red;
+    font-weight: bold;
+    opacity: 0;
+  }
+  .res {
+    width: 50px;
+    height: 50px;
+    background-color: green;
+    /* border-bottom: 50px solid #1ba816;
+     */
+    position: fixed;
+    bottom: 0;
+    right: 10px;
+    border-radius: 50%;
+  }
+</style>
