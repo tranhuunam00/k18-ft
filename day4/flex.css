@@ -1,0 +1,20 @@
+div.flexItem {
+  width: 100px;
+  height: 100px;
+}
+.flexContainer {
+  width: 400px;
+  height: 400px;
+  background-color: rgba(1, 1, 1, 0.2);
+}
+div.flexItem:nth-child(1) {
+  background-color: rgb(14, 135, 135);
+}
+
+div.flexItem:nth-child(2) {
+  background-color: rgb(46, 200, 69);
+}
+
+div.flexItem:nth-child(3) {
+  background-color: rgb(128, 20, 23);
+}
