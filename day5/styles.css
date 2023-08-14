@@ -29,6 +29,9 @@ header {
   justify-content: space-between;
   align-items: center;
 }
+.head_mobile {
+  display: none;
+}
 .nav {
   margin: 0 10rem;
 }
@@ -174,4 +177,128 @@ header {
   flex-wrap: wrap;
   margin: 10rem;
   justify-content: space-around;
+}
+
+@media only screen and (max-width: 675px) {
+  .nav {
+    display: none;
+  }
+  .btns {
+    display: none;
+  }
+  .head_mobile {
+    display: block;
+    width: 12px;
+    height: 12px;
+    position: relative;
+  }
+  .head_mobile > i {
+    /* width: 40px;
+    height: 40px;
+    color: red; */
+  }
+  .head_mobile > i:hover ~ .head_mobile-popup {
+    display: flex;
+    width: 100px;
+    height: 300px;
+    background-color: #9b2b2b;
+    position: absolute;
+    top: 10px;
+    left: -10rem;
+    flex-direction: column;
+  }
+  .head_mobile-popup {
+    display: none;
+  }
+
+  .cart {
+    position: relative;
+    margin-bottom: 14rem;
+  }
+  .cart_bg {
+    /* width: 90%; */
+    height: 30rem;
+  }
+  .cart-date {
+    height: 8.4rem;
+    width: 8.4rem;
+    background-color: #fff;
+    position: absolute;
+    top: 4.5rem;
+    left: 3.5rem;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-weight: 800;
+    color: #274c5b;
+  }
+  .cart-date > p {
+    font-size: 20px;
+  }
+
+  .cart-date > h3 {
+    font-size: 25px;
+  }
+  .cart-content {
+    position: absolute;
+    bottom: -6.5rem;
+    background-color: #ffffff;
+    width: 70%;
+    height: 10rem;
+    left: 3rem;
+    border: 1px solid rgba(1, 1, 1, 0.1);
+    border-radius: 1.6rem;
+    box-shadow: 5px 10px 32px 0px rgba(200, 149, 149, 0.5);
+  }
+  .cart-content-user {
+    margin-top: 4rem;
+    margin-bottom: 2.5rem;
+    align-items: flex-end;
+    gap: 1rem;
+    display: flex;
+    margin-left: 6rem;
+  }
+  .cart-content-user > span {
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    color: var(--primary-color);
+  }
+  .cart-content > h4,
+  .cart-content > p {
+    margin-left: 6rem;
+    margin-right: 6rem;
+  }
+
+  .cart-content > h4 {
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 30px;
+  }
+  .cart-content > p {
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px;
+  }
+  .cart-content-more {
+    margin-left: 6rem;
+    margin-top: 2.5rem;
+    display: flex;
+    align-items: flex-end;
+    gap: 1rem;
+  }
+  .cart-content-more > span {
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 20px;
+  }
+
+  .items {
+    margin: 10px;
+  }
 }
