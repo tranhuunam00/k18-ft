@@ -121,6 +121,7 @@ header {
   left: 5rem;
   border: 1px solid rgba(1, 1, 1, 0.1);
   border-radius: 1.6rem;
+  box-shadow: 5px 10px 32px 0px rgba(200, 149, 149, 0.5);
 }
 .cart-content-user {
   margin-top: 4rem;
