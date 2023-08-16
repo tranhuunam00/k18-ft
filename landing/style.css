@@ -1,51 +1,62 @@
 * {
+  margin: 0 0;
   padding: 0;
-  margin: 0;
   box-sizing: border-box;
 }
 
-html {
-  font-size: 10px;
-}
-:root {
-  --primary-color: #c89595;
+.about {
+  display: flex;
+  flex-wrap: wrap;
 }
 
-header {
-  background-image: url("https://i.pinimg.com/originals/e0/9e/cc/e09ecc13730638c5026e1ece3fbb7172.jpg");
-  width: 100%;
-  height: 600px;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-.nav {
+.about_text {
+  width: 55%;
+  padding: 50px;
   display: flex;
-  margin: 0rem 15%;
+  flex-direction: column;
   justify-content: space-between;
+  height: 400px;
+  gap: 10px;
+  /* min-width: 600px; */
 }
-.nav-logo > h3 {
-  font-size: 6rem;
-  letter-spacing: 6px;
-  font-weight: 700;
+.about_text > h3 {
+  margin-bottom: 10px;
+  font-size: 40px;
+}
+.about_text > button {
+  margin-top: 20px;
+  width: 50%;
+  padding: 10px;
+  font-size: 20px;
+  font-weight: 500;
+  border-radius: 8px;
+  border: none;
+}
+.about_text > button:hover {
+  cursor: pointer;
+  background-color: rgb(207, 196, 182);
+}
+.about_text > p {
+  font-size: 14px;
+  /* width: 100%; */
+}
+.about_img {
+  background-color: aqua;
+  background-image: url("https://media.istockphoto.com/id/517188688/photo/mountain-landscape.jpg?s=1024x1024&w=0&k=20&c=z8_rWaI8x4zApNEEG9DnWlGXyDIXe-OmsAyQ5fGPVV8=");
+  width: 45%;
+  height: 400px;
+  background-size: cover;
+  /* background-repeat: no-repeat; */
 }
 
-.nav-logo > p {
-  font-size: 4rem;
-  font-weight: 400;
-  letter-spacing: 12px;
-}
-.nav-logo {
-  margin-top: 6rem;
-}
-.nav-link {
-  display: flex;
-  gap: 8rem;
-  margin-top: 6rem;
-}
-
-.nav-link > a {
-  color: #fff;
-  font-size: 4rem;
-  text-decoration: none;
-  font-weight: 100;
+@media (max-width: 768px) {
+  .about_text {
+    padding: 10px;
+    width: 100%;
+    /* width: 100vw; */
+  }
+  .about_img {
+    width: 100%;
+    margin-top: 30px;
+  }
 }
