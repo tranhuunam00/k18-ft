@@ -1,91 +1,46 @@
-// var: let const
-// block : {}
-// nguyên thủy : number, string, boolean, null, undefined
-// != == <=  >=  && ||
-// falsy
-// typeof instanceOf
+myString = "hellow";
+// var slice1 = myString.slice(1); // Kết quả: "world!"
+// console.log(myString);
+// console.log("slice1 ", slice1);
 
-const email = "1214234";
-if (!email) {
-  console.log("chưa có email");
-} else {
-  console.log(email.length);
-}
+// var slice2 = myString.slice(2, 4); // Kết quả: "world!"
+// console.log(myString);
+// console.log("slice2 ", slice2);
 
-console.log("phủ định của 0", !0);
-console.log("phủ định của unde", !undefined);
-console.log("phủ định của null", !null);
-console.log("phủ định của false", !false);
-console.log("phủ định của chuỗi rỗng", !"");
-console.log("phủ định của chuỗi rỗng", !NaN);
+// const sliceCustom = (string, end, start) => {};
 
-console.log("phủ định của mảng có phần tử", ![1]);
-console.log("phủ định của mảng 0 phần tử", ![]);
-console.log("phủ định của chuỗi", !"hehhe");
-console.log("phủ định của object rỗng", !{});
+// console.log(sliceCustom(myString, 2, 4));
+// console.warn("\x1b[33mmhehe");
 
-if (!"dieukiendung") {
-  console.log("đúng");
-  console.log("pass");
-} else {
-  console.log("sai");
-}
+// console.log("chay", myString.slice());
 
-console.log("type chuỗi", typeof "chuỗi");
-const email1 = "23423";
-console.log(typeof null == "object");
-
-console.log("so sánh");
-const value1 = 1;
-const value2 = "1";
-console.log(1 == "1" && typeof value1 == typeof value2);
-console.log(1 === "1");
-// Cách đặt biến
-// camelKey
-// snake_key  : CLASS_DOMAIN :"1234@gmail.com"
-console.log("run ");
-// Hàm
-
-console.log("Hàm init");
-function sum(a, b) {
-  return a + b;
-}
-const newFunction = sum;
-// 3 - undefined - error
-const newFunction2 = sum(1, 1);
-// 2
-function subtract(a, b) {
-  const c = a - b;
-  return 9;
-}
-const function3 = subtract;
-console.log("f3");
-console.log(function3);
-console.log(function3(1, 3));
-console.log(function3(11, 3));
-
-// -2 error
-
-let functionName = function (parameters) {
-  // code to be executed
+// for (let i = 0; i < myString.length; i++) {
+//   console.log("vong ", i);
+//   console.log("giá trị ", myString[i]);
+// }
+const sliceCustom = (initString, start, end) => {
+  if (!start || typeof start !== "number") {
+    start = 0;
+  }
+  if (!end || typeof end !== "number") {
+    end = initString.length;
+  }
+  let responseString = "";
+  for (let i = start; i < end; i++) {
+    responseString = responseString + initString[i];
+  }
+  return responseString;
 };
 
-const arrorFun = (a, b) => {
-  console.log("biến", a, b);
-  if (!a) {
-    //
-    console.log("có vào if 1");
-    a = 1;
-  }
-  if (!b) {
-    console.log("có vào if 2");
-    b = 2;
-  }
-  return a + b;
-};
-console.log("arrorFun", arrorFun(5, "hehe")); //7
-console.log("arrorFun", arrorFun({}, "hehe")); //7
-console.log("arrorFun", arrorFun([], "hehe")); //7
-console.log("arrorFun", arrorFun(true, 5)); //6
+console.log(sliceCustom(myString, 1, 3));
+console.log(myString.slice(1, 3));
 
-// Nan
+console.log("th2");
+
+console.log(sliceCustom(myString, 1));
+console.log(myString.slice(1));
+
+console.log("th3");
+
+console.log(sliceCustom(myString));
+console.log(myString.slice());
