@@ -20,20 +20,21 @@ const splitCustom = (text, splitText) => {
   // check xem index của ông splitText ở vị trí số mấy trong chuỗi text
   // cắt chuỗi từ ví trị đầu tiên ? đến index đó
   // nén chuỗi đã cắt vào trong mảng
-
+  response.push("abc,xyz");
   return response;
 };
 console.log(splitCustom(text, "-")); //["k18","ft","hehe"]
 
 // k18-ft-hehe
-// b1 tìm đấu - đầu tiên : 3
-// lấy được từ 0=> 3 : k18
-// ném vô mảng
-// chuỗi còn lại ft-hehe
-// b1 tìm đấu - của ft-hehe : 2
-// lấy được 0 => 2: ft
-// ném vô mảng
-// chuỗi còn lại hehe
-// b1 tìm đấu - của hehe : -1
-// return hehe
-// ném vô mảng
+// b1 tìm đấu - đầu tiên : 3  : indexOf
+// lấy được từ 0=> 3 : k18 : slice
+// ném vô mảng : response.push("k18")
+// chuỗi còn lại ft-hehe : slice
+// b1 tìm đấu - của ft-hehe : 2 :  indexOf
+// lấy được 0 => 2: ft  : slice
+// ném vô mảng : push
+// chuỗi còn lại hehe :slice
+// b1 tìm đấu - của hehe : -1 :indexOf
+// return hehe : slice
+// ném vô mảng :push
+// return mảng or clg ra mảng đó
