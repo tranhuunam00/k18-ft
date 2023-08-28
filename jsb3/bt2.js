@@ -78,3 +78,45 @@ console.log(splitCustom(text, "-")); //["k18","ft","hehe"]
 // chạy từ 0 -> length
 // start = 0;
 // end = index khi text[i] = "-"
+
+const textReplace = text.replace("-", ":");
+const textReplaceAll = text.replaceAll("-", ":");
+
+console.log(textReplace);
+console.log(textReplaceAll);
+
+const upperCase = text.toUpperCase();
+const lowerCase = text.toLocaleLowerCase();
+
+console.log("upperCase ", upperCase);
+console.log("lowerCase ", lowerCase);
+
+console.log(Number("1234"));
+console.log(+"1234");
+const number = 1234;
+console.log(number.toString());
+console.log(number + "");
+
+const array = [1, 2, 4, "hehe"];
+console.log("length");
+console.log(array.length);
+
+for (let i = 0; i < array.length; i++) {
+  console.log("vi tri ", i);
+  console.log(array[i]);
+}
+
+console.log(text.split(""));
+console.log(array.join("---"));
+// đặt 1 biến trả về là let
+// for (o=> mảng .length)
+// let + arr[i]+ "---"
+// return array
+// vồng 1: 1
+// "+ "1---"=> "1---"
+// vồng 2: 2
+// "1---"+ "2---"=> "1---2---"
+// vồng 3: 3
+// "1---2---"+ "3--"=> "1---2---3---"
+// vồng 4: 4
+// "1---2---3---"+ "hehe"=> "1---2---4---hehe"
