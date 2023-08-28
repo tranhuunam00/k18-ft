@@ -58,6 +58,17 @@ const splitCustom = (text, splitText) => {
   console.log("newText2", newText2);
   console.log("hết vòng 2");
 
+  console.log("vòng 3");
+  const index3 = newText2.indexOf("-");
+  console.log("index3 ", index3);
+
+  if (index3 === -1) {
+    const newText3 = newText2;
+    response.push(newText3);
+  }
+  console.log("mảng vòng 3 tìm được là ", response);
+  console.log("hết vòng 3");
+
   return response;
 };
 console.log(splitCustom(text, "-")); //["k18","ft","hehe"]
