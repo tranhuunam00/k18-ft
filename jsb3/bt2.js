@@ -15,16 +15,6 @@ console.log(splitTexts);
 console.log(text.indexOf("-"));
 console.log(text.slice(0, 3));
 
-const splitCustom = (text, splitText) => {
-  const response = [];
-  // check xem index của ông splitText ở vị trí số mấy trong chuỗi text
-  // cắt chuỗi từ ví trị đầu tiên ? đến index đó
-  // nén chuỗi đã cắt vào trong mảng
-  response.push("abc,xyz");
-  return response;
-};
-console.log(splitCustom(text, "-")); //["k18","ft","hehe"]
-
 // k18-ft-hehe
 // b1 tìm đấu - đầu tiên : 3  : indexOf
 // lấy được từ 0=> 3 : k18 : slice
@@ -38,3 +28,23 @@ console.log(splitCustom(text, "-")); //["k18","ft","hehe"]
 // return hehe : slice
 // ném vô mảng :push
 // return mảng or clg ra mảng đó
+
+const splitCustom = (text, splitText) => {
+  console.log("start-----");
+  console.log("vòng 1");
+  const response = [];
+  const index1 = text.indexOf("-");
+  console.log("index1 ", index1);
+
+  const text1 = text.slice(0, index1);
+  console.log("text1 ", text1);
+
+  response.push(text1);
+  const newText1 = text.slice(index1 + 1);
+  console.log("mảng vòng 1 tìm được là ", response);
+  console.log("newText1 ", newText1);
+  console.log("hết vòng 1");
+
+  return response;
+};
+console.log(splitCustom(text, "-")); //["k18","ft","hehe"]
