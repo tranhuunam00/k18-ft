@@ -45,6 +45,25 @@ const splitCustom = (text, splitText) => {
   console.log("newText1 ", newText1);
   console.log("hết vòng 1");
 
+  console.log("vòng 2");
+  const index2 = newText1.indexOf("-");
+  console.log("index2 ", index2);
+
+  const text2 = newText1.slice(0, index2);
+  console.log("text2 ", text2);
+
+  response.push(text2);
+  const newText2 = newText1.slice(index2 + 1);
+  console.log("mảng vòng 2 tìm được là ", response);
+  console.log("newText2", newText2);
+  console.log("hết vòng 2");
+
   return response;
 };
 console.log(splitCustom(text, "-")); //["k18","ft","hehe"]
+
+//  k18-ft-hehe: ["k","1","8",...]
+// start,end
+// chạy từ 0 -> length
+// start = 0;
+// end = index khi text[i] = "-"
