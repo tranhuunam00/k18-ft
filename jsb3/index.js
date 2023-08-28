@@ -19,22 +19,41 @@ function checkAuth(userName, password) {
   console.log("username ", userName);
   console.log("password ", password);
 
+  // if này để check có giá trị hay không? :1
   if (!userName || !password) {
     return "Bạn phải nhập đủ thông tin";
   }
+  // if 2
+  if (typeof userName !== "string" || typeof password !== "string") {
+    return "Bạn phải dung kiểu thông tin";
+  }
 
+  // if 3
   if (password.length <= 6) {
     return "Mật khẩu phải lớn hơn 6 kí tự";
   }
+
+  if (password === PASSWORD_ADMIN && userName === EMAIL_ADMIN) {
+    return "Day la admin";
+  }
+
+  if (password === PASSWORD_USER && userName === EMAIL_USER) {
+    return "Day la user";
+  }
+
+  return "Tai khoan mk khong dung";
 }
-// case 2
-const checkAuth2 = function (userName, password) {};
 
-// case 3
-const checkAuth3 = (userName, password) => {};
-
-//\\
-
-console.log(checkAuth("userName", "123456"));
+console.log(checkAuth("userName", 123456));
 //
 console.log(checkAuth("userName"));
+
+// check(a, b);
+// yêu cầu giá trị giả về giống với ===
+// trong hàm check không được sử dụng ===
+
+// const check = function (a, b) {
+//   return a == b && typeof a == typeof b;
+// };
+
+console.log("test === ", 1234 === "1234");
