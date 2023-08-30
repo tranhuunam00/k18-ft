@@ -24,3 +24,52 @@ const reverse3 = (text) => {
   return array.join("");
 };
 console.log(reverse3("hello"));
+
+console.log("--------------------object----------------");
+
+function abc() {
+  return 1;
+}
+const user = {
+  name: "Zk18",
+  age: 18,
+  getName: function () {
+    console.log("this", this);
+    return this.age;
+  },
+  test: abc,
+};
+console.log(user["name"]);
+console.log(user.name);
+console.log(user.getName());
+console.log(user.test());
+
+var key = "sex";
+const person = {
+  name: "John",
+  age: 30,
+  address: {
+    street: "123 Main St",
+    city: "Anytown",
+    state: "CA",
+  },
+  [key]: "male",
+  getName: function () {
+    return this.name;
+  },
+};
+console.log("dia chir");
+console.log(person.address.city);
+
+const a = "name";
+const age = "20";
+
+const object = {
+  key: "hehe",
+  [a]: "kkk",
+  name: "john",
+  ["age"]: 19,
+  age: 21,
+};
+console.log("keets quar 2", object.name);
+console.log("keets quar age", object.age);
