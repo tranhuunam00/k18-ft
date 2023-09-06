@@ -59,7 +59,7 @@ const numbers = [111, 21, 31, 14];
 
 // hay tinh tong tuoi cua cac thanh vien trong mang sau
 const users = [
-  { name: "k16", age: 16 },
+  { name: "k16", age: 118 },
   { name: "k17", age: 17 },
   { name: "k18", age: 18 },
   { name: "k19", age: 19 },
@@ -67,6 +67,14 @@ const users = [
   { name: "k11", age: 11 },
 ];
 let sum = 0;
+
+for (let i = 0; i < users.length; i++) {
+  if (users[i].age < 18) {
+    // continue;
+    break;
+  }
+  console.log("vuot qua ", i);
+}
 // for (let index of users) {
 //   console.log("index", index);
 //   console.log("index.age", index.age);
@@ -75,8 +83,8 @@ let sum = 0;
 
 // console.log(sum);
 
-for (let i in users) {
-  console.log("i", i);
-  console.log("users[i]", users[i]);
-  console.log("users[i].age", users[i].age);
-}
+// for (let i in users) {
+//   console.log("i", i);
+//   console.log("users[i]", users[i]);
+//   console.log("users[i].age", users[i].age);
+// }
