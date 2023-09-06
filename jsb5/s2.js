@@ -66,6 +66,17 @@ const users = [
   { name: "k12", age: 12 },
   { name: "k11", age: 11 },
 ];
-for (let index of numbers) {
-  console.log("index", index);
+let sum = 0;
+// for (let index of users) {
+//   console.log("index", index);
+//   console.log("index.age", index.age);
+//   sum += index.age;
+// }
+
+// console.log(sum);
+
+for (let i in users) {
+  console.log("i", i);
+  console.log("users[i]", users[i]);
+  console.log("users[i].age", users[i].age);
 }
