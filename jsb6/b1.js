@@ -47,6 +47,26 @@ const check2 = (users, ageCheck) => {
   }
   return true;
 };
+
+const x = (users, ageCheck) => {
+  for (let value of users) {
+    if (value.age > ageCheck) {
+      return true;
+    }
+  }
+  return false;
+};
+
 console.log("check ", check);
 console.log("check2", check2(users, 15));
 console.log("checkSome", checkSome);
+console.log("checkSomeCustom", checkSomeCustom(users, 18));
+
+const checkIndex = (users, ageCheck) => {
+  for (let i in users) {
+    if (users[i].age > ageCheck) {
+      return i;
+    }
+  }
+  return -1;
+};
