@@ -23,15 +23,23 @@ const users = [
   { id: 1, age: 12 },
   { id: 2, age: 22 },
   { id: 3, age: 32 },
-];
+]; //0X99
 
-const users2 = users;
-users.push({ id: 4, age: 42 });
+const users2 = []; // 0x100
 
-console.log("users", users); // ra 4 phần tử
-console.log("users2", users2); // ra 3 phần tử
+// in key : 0,1,2,3
+// of
+for (let index in users) {
+  const newItem = { id: users[index].id, age: users[index].age };
+  users2.push(newItem);
+}
 
-users[0].id = 100;
-console.log("---------------------");
-console.log("users", users); // ra 4 phần tử
-console.log("users2", users2); // ra 3 phần tử
+users.push({
+  id: 4,
+  age: 42,
+});
+
+users[0].age = 90;
+
+console.log("users", users);
+console.log("users2", users2);
