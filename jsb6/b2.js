@@ -18,13 +18,16 @@ const courses = [
 // });
 
 const total = courses.reduce((prevValue, currentValue, index) => {
-  console.log("-------------------------");
+  console.log("---------------", index);
   console.log(prevValue);
   console.log(currentValue);
-  console.log(index);
-
   return prevValue + currentValue.price;
-}, 100);
+});
 console.log("total", total);
 
-("k18 hoc js gia 12, k18 hoc php gia 17, k18 hoc java gia 14");
+// const stringText = courses.reduce((prevValue, currentValue, index) => {
+//   return (
+//     prevValue + "K18 học" + currentValue.name + " gia " + currentValue.price
+//   );
+// }, "");
+// console.log(stringText);
