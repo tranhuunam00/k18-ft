@@ -59,6 +59,10 @@
       id: 2,
       name: "k19",
     },
+    {
+      id: 3,
+      name: "k20",
+    },
     // ... tự động
   ];
 
@@ -68,10 +72,55 @@
   //  1  | 1  | k18
   //  2  | 2  | k19
   //...
+
+  if (users.length) {
+    const headerElement = document.createElement("h2");
+    const headerText = document.createTextNode("stt id name");
+    headerElement.appendChild(headerText);
+    id1Element.appendChild(headerElement);
+
+    // for (let index = 0; index < users.length; index++) {
+    //   const rowElement = document.createElement("h6");
+    //   const rowText = document.createTextNode(
+    //     "" + (index + 1) + "___" + users[index].id + "___" + users[index].name
+    //   );
+    //   rowElement.appendChild(rowText);
+    //   id1Element.appendChild(rowElement);
+    // }
+    users.forEach((value, index) => {
+      const rowElement = document.createElement("h6");
+      const rowText = document.createTextNode(
+        "" + (index + 1) + "___" + value.id + "___" + value.name
+      );
+      rowElement.appendChild(rowText);
+      id1Element.appendChild(rowElement);
+      rowElement.setAttribute("class", "bold");
+      const classAttributeOLd = rowElement.getAttribute("class");
+      console.log(classAttributeOLd);
+      rowElement.setAttribute(
+        "class",
+        index % 2 === 0
+          ? "green " + classAttributeOLd
+          : "blue " + classAttributeOLd
+      );
+    });
+  }
 </script>
 
 <style>
   .subTitle {
     color: red;
+  }
+
+  .green {
+    color: green;
+  }
+
+  .blue {
+    color: blue;
+  }
+  .bold {
+    font-weight: 900;
+    font-size: 30px;
   }
 </style>
