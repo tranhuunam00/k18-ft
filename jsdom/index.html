@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="id1">
+      <h1>Đây là tiêu đề</h1>
+      <h5 class="subTitle">Đây là phụ đề</h5>
+      <p>
+        Event: Đại diện cho các sự kiện trong tài liệu HTML, ví dụ như nhấn
+        chuột, nhấn phím, hoặc cuộn trang.
+      </p>
+      <h5 class="subTitle">Đây là phụ đề ở dưới</h5>
+      <h5></h5>
+    </div>
+  </body>
+</html>
+<script>
+  const id1Element = document.getElementById("id1");
+  const id1ElementFake = document.getElementById("id1_fake");
+  console.log("id1Element", id1Element);
+  console.log("id1ElementFake", id1ElementFake);
+
+  const subTitleElements = document.getElementsByClassName("subTitle");
+  console.log("subTitleElements", subTitleElements);
+
+  const h5Elements = document.getElementsByTagName("h5");
+  console.log("h5Elements", h5Elements);
+
+  const id1ElementCss = document.querySelector("#id1");
+  console.log("id1ElementCss", id1ElementCss);
+  const subTitleCssElements = document.querySelectorAll(".subTitle");
+  console.log("subTitleCssElements", subTitleCssElements);
+
+  const newDiv = document.createElement("div"); //div
+  const textnode = document.createTextNode("Water"); //water
+  newDiv.appendChild(textnode); //<div>water</div>
+  id1Element.appendChild(newDiv);
+
+  // setInterval(() => {
+  //   document.title = "k18" + new Date().toString();
+  // }, 2000);
+
+  const newH2Element = document.createElement("h2");
+  const newH2Text = document.createTextNode("New H2 text");
+  newH2Element.appendChild(newH2Text);
+  id1Element.appendChild(newH2Element);
+  newH2Element.setAttribute("class", "subTitle");
+
+  const users = [
+    {
+      id: 1,
+      name: "k18",
+    },
+    {
+      id: 2,
+      name: "k19",
+    },
+    // ... tự động
+  ];
+
+  // gia su khong biet so luong phan tu mang user
+  // hay the hien len man hinh
+  // stt | id | name
+  //  1  | 1  | k18
+  //  2  | 2  | k19
+  //...
+</script>
+
+<style>
+  .subTitle {
+    color: red;
+  }
+</style>
