@@ -7,8 +7,45 @@
   </head>
   <body>
     <h1 id="h1">k19</h1>
+    <div id="myDiv">This is some content.</div>
   </body>
-  <script></script>
+  <script>
+    // laasy h2
+    // them 1 class green vafo h2 do
+    // them 1 class fontSIze vafo h2
+    // them class blue vao h2 do
+    const h1Element = document.getElementById("h1");
+    const textH1 = h1Element.textContent;
+    h1Element.textContent = "new text new new ";
+    console.log(h1Element);
+    console.log(textH1);
+    const myDiv = document.getElementById("myDiv");
+    // myDiv.innerHTML = "alo alo alo<strong>lam dam.</strong>";
+    // myDiv.innerText = "alo alo alo<strong>lam dam.</strong>";
+    const users = [
+      {
+        id: 1,
+        name: "k18",
+      },
+      {
+        id: 2,
+        name: "k19",
+      },
+      {
+        id: 3,
+        name: "k20",
+      },
+      // ... tự động
+    ];
+    const htmlUser = users.map((value, index) => {
+      return "<h5>" + index + value.name + "linhtinh" + "</h5>";
+    });
+    console.log("htmlUser", htmlUser);
+    const htmlUserText = htmlUser.join("");
+    console.log("htmlUserText", htmlUserText);
+    console.log(htmlUserText);
+    myDiv.innerHTML = htmlUserText;
+  </script>
   <style>
     .green {
       color: green;

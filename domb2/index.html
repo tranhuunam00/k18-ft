@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="header">
+      <a class="nav" href="./">Home</a>
+      <a class="nav" href="./">Home1</a>
+      <a class="nav" href="./">Home2</a>
+      <a class="nav" href="./">Home3</a>
+      <p class="text"></p>
+      <button class="auth">Đăng kí</button>
+    </div>
+  </body>
+</html>
+
+<script>
+  const divELement = document.getElementById("header");
+  const aElements = document.getElementsByClassName("nav");
+  const buttonElements = document.getElementsByTagName("button");
+
+  for (let index = 0; index < aElements.length; index++) {
+    const oldClass = aElements[index].className;
+    if (index % 2 == 0) {
+      aElements[index].className = oldClass + " green";
+    } else {
+      aElements[index].className = oldClass + " red";
+    }
+  }
+
+  // B1 tao 1 elememt
+  const newDivELe = document.createElement("div");
+  // const textDiv = document.createTextNode("new Div");
+  // newDivELe.appendChild(textDiv);
+  divELement.appendChild(newDivELe);
+  newDivELe.innerText = "<strong>hehe</strong>";
+  newDivELe.innerHTML = "<strong>hehe</strong>";
+  // B2 tao text
+  // B3 gan text element
+  // b4 xac dinh cha
+  const users = [
+    { id: 1, name: "k18" },
+    { id: 1, name: "k18" },
+    { id: 1, name: "k18" },
+  ];
+  const ulE = document.createElement("ul");
+  divELement.appendChild(ulE);
+  const liE = document.createElement("li");
+  liE.innerText = "!234";
+  ulE.appendChild(liE);
+  //
+  //
+</script>
+<style>
+  .green {
+    color: green;
+  }
+  .red {
+    color: red;
+  }
+</style>
