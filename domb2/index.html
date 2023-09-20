@@ -20,7 +20,6 @@
 <script>
   const divELement = document.getElementById("header");
   const aElements = document.getElementsByClassName("nav");
-  const buttonElements = document.getElementsByTagName("button");
 
   for (let index = 0; index < aElements.length; index++) {
     const oldClass = aElements[index].className;
@@ -56,6 +55,14 @@
     ulE.appendChild(liE);
   }
 
+  const buttonElement = document.querySelector(".auth");
+  buttonElement.classList.add("green");
+
+  buttonElement.addEventListener("click", () => {
+    const liE = document.createElement("li");
+    liE.innerText = new Date();
+    ulE.appendChild(liE);
+  });
   //
   //
 </script>
