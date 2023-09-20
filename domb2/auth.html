@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Dang ki</h1>
+    <input type="text" name="email" id="email" placeholder="nhap email..." />
+    <input type="text" name="password" id="password" placeholder="nhap pw..." />
+    <!-- <input type="checkbox" name="check" id="check" /> -->
+
+    <button id="submit">submit đăng kí</button>
+
+    <h1>Dang nhập</h1>
+    <input
+      type="text"
+      name="email"
+      id="emailLogin"
+      placeholder="nhap email..."
+    />
+    <input
+      type="text"
+      name="password"
+      id="passwordLogin"
+      placeholder="nhap pw..."
+    />
+    <!-- <input type="checkbox" name="check" id="check" /> -->
+
+    <button id="submitLogin">submit đăng nhập</button>
+  </body>
+</html>
+<script>
+  const users = [];
+
+  // laasy ra 3 thành phần
+  const emailInput = document.getElementById("email");
+  const pwInput = document.getElementById("password");
+  const submitButton = document.getElementById("submit");
+  const checkInput = document.getElementById("check");
+
+  // thêm sự kiện cho email Input
+  emailInput.addEventListener("input", function (event) {
+    if (emailInput.value && pwInput.value) {
+      submitButton.disabled = false;
+      return;
+    }
+    return (submitButton.disabled = true);
+  });
+
+  pwInput.addEventListener("input", function (event) {
+    if (emailInput.value && pwInput.value) {
+      return (submitButton.disabled = false);
+    }
+
+    return (submitButton.disabled = true);
+  });
+  submitButton.disabled = true;
+  submitButton.addEventListener("click", (e) => {
+    if (!emailInput.value || !pwInput.value) {
+      alert("Hãy nhập đủ các trường");
+      return;
+    }
+    if (emailInput.value.length < 5) {
+      alert("NHập email lớn hơn 4 kí tự");
+      return;
+    }
+
+    users.push({
+      [emailInput.name]: emailInput.value,
+      [pwInput.name]: pwInput.value,
+    });
+    emailInput.value = "";
+    pwInput.value = "";
+    alert("thành công đăng kí");
+
+    console.log(users);
+  });
+
+  // đăng nhập
+  const emailInputLogin = document.getElementById("emailLogin");
+  const pwInputLogin = document.getElementById("passwordLogin");
+  const submitButtonLogin = document.getElementById("submitLogin");
+  emailInputLogin.addEventListener("input", function (event) {});
+
+  pwInputLogin.addEventListener("input", function (event) {});
+
+  submitButtonLogin.addEventListener("click", (e) => {
+    const email = emailInputLogin.value;
+    const password = pwInputLogin.value;
+    const existedUser = users.find((value, index) => {
+      return value.email === email && password === value.password;
+    });
+    if (!existedUser) {
+      alert("nhập sai tk mk");
+      return;
+    }
+    alert("thành công");
+    emailInputLogin.value = "";
+    pwInputLogin.value = "";
+  });
+</script>
