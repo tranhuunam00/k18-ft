@@ -43,14 +43,19 @@
   // b4 xac dinh cha
   const users = [
     { id: 1, name: "k18" },
-    { id: 1, name: "k18" },
-    { id: 1, name: "k18" },
+    { id: 1, name: "k19" },
+    { id: 1, name: "k20" },
   ];
+
   const ulE = document.createElement("ul");
   divELement.appendChild(ulE);
-  const liE = document.createElement("li");
-  liE.innerText = "!234";
-  ulE.appendChild(liE);
+
+  for (let i = 0; i < users.length; i++) {
+    const liE = document.createElement("li");
+    liE.innerText = users[i].name;
+    ulE.appendChild(liE);
+  }
+
   //
   //
 </script>
