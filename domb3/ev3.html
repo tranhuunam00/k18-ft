@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+</html>
+
+<script>
+  const user = { id: 1 };
+
+  const userString = JSON.stringify(user);
+  console.log("tostring", user.toString());
+  console.log("userString", userString);
+  localStorage.setItem("user", userString);
+
+  const localValue = localStorage.getItem("user");
+  console.log("geting...");
+  console.log(localValue);
+  console.log(typeof localValue);
+  console.log(JSON.parse(localValue));
+  console.log(JSON.parse(localValue).id);
+</script>

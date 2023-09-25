@@ -6,7 +6,11 @@
     <title>Document</title>
   </head>
   <body>
-    <input id="email" name="email" type="text" placeholder="Nhap email" />
+    <div>
+      <input id="email" name="email" type="text" placeholder="Nhap email" />
+      <p id="errorEmail" style="color: red"></p>
+    </div>
+
     <!-- <input type="checkbox" />
     <input type="radio" />
     <input type="date" /> -->
@@ -32,6 +36,13 @@
     const name = target.name;
     const value = target.value;
     console.log("name", name, value);
+
+    const errorEmail = document.getElementById("errorEmail");
+    if (value) {
+      errorEmail.innerText = "";
+    } else {
+      errorEmail.innerText = "VUi lòng nhập trường này!";
+    }
     if (emailELe.value && pwELe.value && rePwELe.value) {
       saveBtn.disabled = false;
     } else {
@@ -99,5 +110,8 @@
     rePwELe.value = "";
 
     console.log("currentInit", usersInit);
+
+    // kiểm tra email có tồn tại chưa
+    // kiểm tra pw
   });
 </script>

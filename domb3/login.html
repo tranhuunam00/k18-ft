@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input id="email" name="email" type="text" placeholder="Nhap email" />
+    <!-- <input type="checkbox" />
+    <input type="radio" />
+    <input type="date" /> -->
+    <input id="pw" name="password" type="text" placeholder="Nhap pw" />
+
+    <button id="save">save</button>
+  </body>
+</html>
+<script>
+  const usersInit = [
+    {
+      id: 1,
+      email: "k18",
+      pw: "Hashk18",
+    },
+    {
+      id: 2,
+      email: "k19",
+      pw: "Hashk19",
+    },
+  ];
+  const emailELe = document.getElementById("email");
+  const pwELe = document.getElementById("pw");
+  const saveBtn = document.getElementById("save");
+
+  emailELe.addEventListener("input", (event) => {
+    const target = event.target;
+    const name = target.name;
+    const value = target.value;
+    console.log("name", name, value);
+    if (emailELe.value && pwELe.value) {
+      saveBtn.disabled = false;
+    } else {
+      saveBtn.disabled = true;
+    }
+  });
+
+  pwELe.addEventListener("input", (event) => {
+    const target = event.target;
+    const name = target.name;
+    const value = target.value;
+    console.log("name", name, value);
+    if (emailELe.value && pwELe.value) {
+      saveBtn.disabled = false;
+    } else {
+      saveBtn.disabled = true;
+    }
+  });
+
+  saveBtn.addEventListener("click", (event) => {
+    const pw = pwELe.value;
+    const email = emailELe.value;
+
+    const userExisted = usersInit.find((value, index) => {
+      return value.email === email;
+    });
+
+    if (!userExisted) {
+      alert("chưa tồn tại tài khoản");
+      return;
+    }
+
+    const hashCurrentPw = encodePW(pw);
+
+    if (hashCurrentPw !== userExisted.pw) {
+      alert("Sai mật khẩu");
+      return;
+    }
+    alert("done");
+  });
+
+  const encodePW = (pw) => {
+    return "Hash" + pw;
+  };
+</script>
