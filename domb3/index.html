@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="div1">
+      <p class="cl1">p1</p>
+      <p class="cl1 red">p2</p>
+    </div>
+  </body>
+</html>
+<script>
+  const divELement = document.getElementById("div1");
+  const divELements = document.getElementsByTagName("div");
+
+  const divEle2 = document.querySelector("#div1");
+  const pELes = document.querySelectorAll(".cl1");
+
+  console.log("divELement", divELement);
+  console.log("divELements", divELements);
+  console.log("divEle2", divEle2);
+  console.log("pELes", pELes);
+  const oldClass = pELes[1].className;
+  console.log("oldClass", oldClass);
+  pELes[1].className = oldClass + " green";
+
+  const users = [{ name: "k18" }, { name: "k19" }];
+  for (let user of users) {
+    const h1EleNew = document.createElement("h1");
+    h1EleNew.innerText = user.name;
+    h1EleNew.className = "green";
+    divELement.appendChild(h1EleNew);
+  }
+</script>
+
+<style>
+  .cl1 {
+    font-size: 30px;
+  }
+  .green {
+    color: green;
+  }
+</style>
