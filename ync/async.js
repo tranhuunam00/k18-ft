@@ -42,4 +42,28 @@ promise
   });
 console.log("END-----");
 
-// log 1 - log 2 sau 5s - log 3 sau log 2 3s
+// log 1 - log 2 sau (n)s - log 3 sau log 2 3s log 4 sau log 3 2
+// c1 dùng 2 setTimeout
+// c2 setTimeout lồng setTimeout
+
+console.log("------------------");
+console.log(new Date());
+
+setTimeout(() => {
+  console.log(new Date());
+  console.log("log2");
+}, 5000);
+
+setTimeout(() => {
+  console.log(new Date());
+  console.log("log3");
+}, 8000);
+
+setTimeout(() => {
+  console.log(new Date());
+  setTimeout(() => {
+    console.log(new Date());
+    console.log("log3");
+  }, 3000);
+  console.log("log2");
+}, 5000);
