@@ -16,14 +16,23 @@
   console.log("loadBtn", loadBtn);
   loadBtn.addEventListener("click", () => {
     console.log("ấn vào đây....");
-    const fetchData = fetch("https://jsonplaceholder.typicode.com/todos/1");
+    const fetchData = fetch("https://jsonplaceholder.typicode.com/posts");
     fetchData
       .then((response) => response.json())
-      .then((json) => {
-        const divEle = document.createElement("div");
-        divEle.innerText = json.title;
-        const usersEle = document.getElementById("users");
-        usersEle.appendChild(divEle);
-      });
+      .then((posts) => {
+        for (let post of posts) {
+          const divEle = document.createElement("div");
+          divEle.innerText = post.id;
+          const usersEle = document.getElementById("users");
+          usersEle.appendChild(divEle);
+        }
+        // json.forEach((post, index) => {
+        //   const divEle = document.createElement("div");
+        //   divEle.innerText = post.id;
+        //   const usersEle = document.getElementById("users");
+        //   usersEle.appendChild(divEle);
+        // });
+      })
+      .catch((e) => console.log(e));
   });
 </script>

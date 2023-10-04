@@ -38,6 +38,18 @@
 //   await delayTime(0);
 //   console.log("Log 3");
 // }
-const fetchData = fetch("https://jsonplaceholder.typicode.com/todos/1");
 
-fetchData.then((response) => response.json()).then((json) => console.log(json));
+// const fetchData = fetch("https://jsonplaceholder.typicode.com/todos/1");
+
+// fetchData.then((response) => response.json()).then((json) => console.log(json));
+
+const test = () => {
+  try {
+    a();
+  } catch (error) {
+    console.log(error);
+  }
+};
+const a = async () => {
+  throw new Error("đây là lỗi");
+};
