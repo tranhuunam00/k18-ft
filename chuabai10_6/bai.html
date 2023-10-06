@@ -1,0 +1,84 @@
+<!-- bt2. fetch dữ liệu từ https://jsonplaceholder.typicode.com/users và sau đó in ra màn hình thành table : có stt, id, name
+yêu cầu : dòng  chia hết cho 3 chữ màu đỏ,
+ chữ chia 3 dư 1  màu xanh lá cây, chia 3 dư 2 màu xanh nước biển
+hover vào dòng nào thì dòng đó mờ đi -->
+<!-- tạo 1 nút button có chữ call.
+   khi ấn vào thì chữ call sẽ biến thành chữ loading.
+    và gọi fetch lên  https://jsonplaceholder.typicode.com/users lấy dữ liệu về . nếu thành công thì in ra màn hình danh sách name của user . lưu ý gọi xong thì biến đổi lại loading thì call -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Users</h1>
+    <button class="btn" id="get">GetUser33</button>
+    <div class="show"></div>
+  </body>
+</html>
+<style>
+  .greenColor {
+    color: green;
+  }
+  .blueColor {
+    color: blue;
+  }
+  .h4 {
+    font-size: 30px;
+  }
+</style>
+<script>
+  // document - element: thẻ
+  // attributes : href, style,...
+  // event - text
+  const getUsers = async () => {
+    const data = await fetch("https://jsonplaceholder.typicode.com/users");
+    const dataJson = await data.json();
+    return dataJson;
+  };
+
+  const btnEle = document.querySelector(".btn");
+  btnEle.addEventListener("click", async () => {
+    try {
+      btnEle.innerText = "Loading";
+      const data = await getUsers();
+      console.log("dataa", data);
+      const divShowEle = document.querySelector(".show");
+      for (let user of data) {
+        const indexUser = data.findIndex((value, index) => {
+          return value.id === user.id;
+        });
+
+        const h4Ele = document.createElement("h4");
+        h4Ele.innerText = user["name"];
+        h4Ele.classList = "h4";
+        // indexUser % 2 == 1
+        //   ? h4Ele.classList.add("greenColor")
+        //   : h4Ele.classList.add("blueColor");
+        indexUser % 2 == 1
+          ? (h4Ele.style.color = "green")
+          : (h4Ele.style.color = "blue");
+        // const divShowEle = document.querySelector(".show");
+        divShowEle.appendChild(h4Ele);
+      }
+      // const userHtml = data.map((user, index) => {
+      //   return "<h4>" + user.name + "</h4>";
+      // });
+      // const userHtmlString = userHtml.join("");
+      // divShowEle.innerHTML = userHtmlString;
+      // divShowEle.innerHTML = data
+      //   .map((user, index) => {
+      //     return "<h4>" + user.name + "</h4>";
+      //   })
+      //   .join("");
+    } catch (error) {
+      console.log("error", error);
+    } finally {
+      btnEle.innerText = "GetUser33";
+    }
+  });
+
+  console.log(btnEle);
+</script>
