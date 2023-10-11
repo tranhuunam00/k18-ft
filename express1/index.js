@@ -13,9 +13,23 @@ app.get("/", (req, res) => {
 });
 
 app.get("/user", (req, res) => {
-  console.log(req.query);
+  const { id_sort, id_tohon } = req.query;
+  console.log("id_sort", id_sort);
+  if (+id_sort === 1) {
+    const data = users.sort((a, b) => a.id - b.id);
+    res.json(data);
+  }
+  if (+id_sort === -1) {
+    const data = users.sort((a, b) => -(a.id - b.id));
+    res.json(data);
+  }
+  if (id_tohon) {
+    const data = users.filter((value) => {
+      return value.id > +id_tohon;
+    });
+    res.json(data);
+  }
   res.json(users);
-  res.send("Hello World!");
 });
 
 // app
