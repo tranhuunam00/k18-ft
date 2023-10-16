@@ -1,5 +1,7 @@
 const express = require("express");
+var bodyParser = require("body-parser");
 const app = express();
+app.use(bodyParser.urlencoded({ extended: false }));
 
 app.get("/", function (req, res) {
   res.send("Hello World!");
@@ -55,10 +57,16 @@ app.get("/users", (req, res) => {
 
   console.timeEnd("get users");
   console.log("---get-users---END");
+  //http://localhost:3000/users?age_gt=25&id_sort=-1&ids=1&ids=9
   return res.json(newUsers);
+});
+app.get("/users/:id", (req, res) => {
+  console.log("req.params", req.params);
+  return res.json(users.find((user) => user.id === +req.params.id));
 });
 
 // khởi tạo server chạy on port
 app.listen(3000, function () {
   console.log("Server is listening at 3000");
 });
+// method -status code
