@@ -2,7 +2,7 @@ const express = require("express");
 var bodyParser = require("body-parser");
 const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
-
+app.use(bodyParser.json());
 app.get("/", function (req, res) {
   res.send("Hello World!");
 });
@@ -21,7 +21,7 @@ const randomUsersInit = (number) => {
   }
   return users;
 };
-const users = randomUsersInit(10);
+let users = randomUsersInit(10);
 
 // viết 1 api truyền lên theo rep.query
 // 1. lọc theo độ tuổi lớn hơn : age_gt: number
@@ -33,7 +33,6 @@ const users = randomUsersInit(10);
 
 app.get("/users", (req, res) => {
   console.log("---get-users---STARTING");
-  console.time("users");
   // query truyền sau dấu ?
   // tất cả query đều là string
   // nếu định lấy nhiều dữ liệu thì xấu nhất cũng trả về 1 mảng rỗng
@@ -55,14 +54,65 @@ app.get("/users", (req, res) => {
     newUsers = newUsers.sort((a, b) => (a.id - b.id) * -id_sort);
   }
 
-  console.timeEnd("get users");
   console.log("---get-users---END");
   //http://localhost:3000/users?age_gt=25&id_sort=-1&ids=1&ids=9
   return res.json(newUsers);
 });
 app.get("/users/:id", (req, res) => {
   console.log("req.params", req.params);
+  console.log(users);
   return res.json(users.find((user) => user.id === +req.params.id));
+});
+
+// api đăng kí
+// restful api
+app.post("/users", (req, res) => {
+  const { name, age } = req.body;
+  // todo
+  // check ....
+  const newUser = {
+    id: users.sort((a, b) => b.id - a.id)[0].id + 1,
+    name,
+    age,
+  };
+  users.push(newUser);
+
+  res.json(newUser);
+});
+
+// api chỉnh sửa user
+// restful api
+app.put("/users/:id", (req, res) => {
+  const { name, age } = req.body;
+  const { id } = req.params;
+  // 1. tìm user xem có tồn tại k \
+  const existUser = users.find((user) => user.id === +id);
+  const index = users.findIndex((user) => user.id === +id);
+  if (!existUser) return res.json("user không tồn tại");
+  const editUser = { ...existUser };
+
+  if (name) {
+    //check choác name
+    editUser.name = name;
+  }
+  if (age) {
+    //check choác name
+    editUser.age = age;
+  }
+  users[index] = editUser;
+  res.json(editUser);
+});
+
+// xóa user
+app.delete("/users/:id", (req, res) => {
+  const { id } = req.params;
+  // check choác
+  // 1. tìm user xem có tồn tại k
+  // 1. tìm user xem có tồn tại k \
+  const existUser = users.find((user) => user.id === +id);
+  if (!existUser) return res.json("user không tồn tại");
+  users = users.filter((user) => user.id !== +id);
+  res.json("đã xóa");
 });
 
 // khởi tạo server chạy on port
@@ -70,3 +120,6 @@ app.listen(3000, function () {
   console.log("Server is listening at 3000");
 });
 // method -status code
+
+// quy định :
+// res.json:{statusCode: number,error:true||false,data:[] || {} || number}
