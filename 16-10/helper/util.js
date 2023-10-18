@@ -1,4 +1,4 @@
-var crypto = require("crypto");
+const bcrypt = require("bcrypt");
 
 const validateEmail = (email) => {
   return String(email)
@@ -12,8 +12,8 @@ const validatePassword = (pw) => {
   return pw?.trim().length > 6;
 };
 
-const hashPassword = (pw) => {
-  return crypto.createHash("md5");
+const hashPassword = async (pw) => {
+  return await bcrypt.hash(pw, 10);
 };
 const UTIL_HELPER = {
   validateEmail,

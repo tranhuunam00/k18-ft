@@ -1,4 +1,5 @@
-const ERROR_MESSAGE = {
+const HTTP_MESSAGE = {
+  success: "Thành công",
   // body
   dataNotVerify: "Bạn chưa nhập đúng dữ liệu",
   emailNotVerify: "Email chưa đúng định dạng",
@@ -10,4 +11,4 @@ const ERROR_MESSAGE = {
   passwordNotMatch: "Mật khẩu vào không đúng",
 };
 
-module.exports = ERROR_MESSAGE;
+module.exports = HTTP_MESSAGE;
