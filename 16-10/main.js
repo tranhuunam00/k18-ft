@@ -1,4 +1,5 @@
 const express = require("express");
+const qs = require('querystring');
 var bodyParser = require("body-parser");
 const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -17,6 +18,7 @@ const randomUsersInit = (number) => {
       id: i,
       ["name"]: `name ${i}`,
       age: i + 19,
+      password: "123456"
     });
   }
   return users;
@@ -33,6 +35,9 @@ let users = randomUsersInit(10);
 
 app.get("/users", (req, res) => {
   console.log("---get-users---STARTING");
+  console.log(qs.stringify({ keyword: ' 1 '}));
+
+  console.log('req.query', req.query)
   // query truyền sau dấu ?
   // tất cả query đều là string
   // nếu định lấy nhiều dữ liệu thì xấu nhất cũng trả về 1 mảng rỗng
