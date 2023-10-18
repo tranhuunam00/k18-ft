@@ -3,6 +3,7 @@ const qs = require("querystring");
 var bodyParser = require("body-parser");
 const STATUS_CODE = require("./constants/httpResponseCode");
 const ERROR_MESSAGE = require("./constants/httpErrorMessage");
+const UTIL_HELPER = require("./helper/util");
 const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -35,7 +36,34 @@ app.post("/signup", (req, res) => {
       data: null,
     });
   }
-  // check định dạng email
+  //2. check định dạng email
+  if (!UTIL_HELPER.validateEmail(email)) {
+    return res.status(STATUS_CODE.badRequest).json({
+      error: true,
+      message: ERROR_MESSAGE.emailNotVerify,
+      data: null,
+    });
+  }
+
+  // 3. password dài hơn 6 kí tự
+  // hoặc n điều kiện cho pw
+  if (!UTIL_HELPER.validatePassword(password)) {
+    return res.status(STATUS_CODE.badRequest).json({
+      error: true,
+      message: ERROR_MESSAGE.passwordNotVerify,
+      data: null,
+    });
+  }
+
+  // 4. check email tồn tại
+  const exitedUser = users.find((user) => user.email === email);
+  if (exitedUser) {
+    return res.status(STATUS_CODE.badRequest).json({
+      error: true,
+      message: ERROR_MESSAGE.existedUser,
+      data: null,
+    });
+  }
   console.log("-----get---signup----END---");
   res.json("đăng kí thành công");
 });

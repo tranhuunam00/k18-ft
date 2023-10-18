@@ -1,6 +1,8 @@
 const ERROR_MESSAGE = {
   // body
   dataNotVerify: "Bạn chưa nhập đúng dữ liệu",
+  emailNotVerify: "Email chưa đúng định dạng",
+  passwordNotVerify: "password chưa đúng định dạng",
 
   // user
   notExistedUser: "Người dùng chưa tồn tại",
