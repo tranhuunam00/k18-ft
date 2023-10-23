@@ -31,7 +31,7 @@ app.get("/users", (req, res) => {
   // query truyền sau dấu ?
   // tất cả query đều là string
   // nếu định lấy nhiều dữ liệu thì xấu nhất cũng trả về 1 mảng rỗng
-
+  //
   const { age_gt, id_sort, keyword, ids } = req.query;
   console.log(req.query);
   let newUsers = [...users];
