@@ -113,6 +113,49 @@ app.post("/signup", async (req, res) => {
   });
 });
 
+app.post("/login", async (req, res) => {
+  console.log("-----post---signup----START---");
+  const { email, password } = req.body;
+  // 1. check body
+  if (!email && !password) {
+    return res.status(STATUS_CODE.badRequest).json({
+      error: true,
+      message: HTTP_MESSAGE.dataNotVerify,
+      data: null,
+    });
+  }
+  // 2. tìm user có email
+  const existedUser = users.find((user) => user.email === email);
+  if (!existedUser) {
+    return res.status(STATUS_CODE.notFounded).json({
+      error: true,
+      message: HTTP_MESSAGE.notExistedUser,
+      data: null,
+    });
+  }
+  // 2. check pw
+  if (!(await UTIL_HELPER.comparePassword(password, existedUser.password))) {
+    return res.status(STATUS_CODE.badRequest).json({
+      error: true,
+      message: HTTP_MESSAGE.passwordNotMatch,
+      data: null,
+    });
+  }
+
+  const token = UTIL_HELPER.generateToken(existedUser.id, 200000000);
+  const dataUser = { ...existedUser };
+  delete dataUser.password;
+  console.log("-----post---signup----END---");
+  return res.status(STATUS_CODE.success).json({
+    error: false,
+    message: HTTP_MESSAGE.success,
+    data: {
+      user: dataUser,
+      token,
+    },
+  });
+});
+
 app.listen(3000, function () {
   console.log("Server is listening at 3000");
 });
