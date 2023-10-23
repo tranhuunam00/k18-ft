@@ -8,6 +8,10 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+var cors = require("cors");
+
+app.use(cors());
+
 const randomUsersInit = (number) => {
   const users = [];
   for (let i = 1; i <= number; i++) {
@@ -55,6 +59,7 @@ app.get("/users", (req, res) => {
 });
 app.post("/signup", async (req, res) => {
   console.log("-----get---signup----START---");
+  console.log(req.body);
   // login
   const { email, password, name, age } = req.body;
   //1. check type và dữ liệu
