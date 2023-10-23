@@ -33,6 +33,7 @@ app.get("/users", (req, res) => {
   // nếu định lấy nhiều dữ liệu thì xấu nhất cũng trả về 1 mảng rỗng
   //
   const { age_gt, id_sort, keyword, ids } = req.query;
+  console.log("99dfhsfjsdfhdsm");
   console.log(req.query);
   let newUsers = [...users];
   // lọc trước khi sắp xếp
