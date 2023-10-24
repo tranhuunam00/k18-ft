@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./index.js">
+    <title>Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f7f7;
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            height: 100vh;
+            background-color: #f7f7f7;
+        }
+
+        .signup, .login, .list, .fix {
+            background-color: #ffffff;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            padding: 20px;
+            text-align: center;
+            width: 300px;
+            margin: 10px;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        #signup-input, #login-input, #list-input, #fix-input {
+            margin: 10px 0;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            background-color: #0074b3;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* Màu hover cho nút */
+        button:hover {
+            background-color: #005b91;
+        }
+
+        /* Định dạng nút theo class riêng biệt */
+        #singupButton {
+            background-color: #00a000;
+        }
+
+        #singupButton:hover {
+            background-color: #007c00;
+        }
+
+        #loginButton {
+            background-color: #f56b00;
+        }
+
+        #loginButton:hover {
+            background-color: #d55500;
+        }
+
+        #listButton {
+            background-color: #a300a3;
+        }
+
+        #listButton:hover {
+            background-color: #900090;
+        }
+
+        #fixButton {
+            background-color: #dd4b39;
+        }
+
+        #fixButton:hover {
+            background-color: #c13e2c;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="signup">
+            <h1>Đăng ký</h1>
+            <div id="signup-input">
+                <input type="email" name="email" id="singupEmail">
+                <input type="password" name="password" id="singupPassword">
+                <button id="singupButton">Đăng ký</button>
+            </div>
+        </div>
+        <div class="login">
+            <h1>Đăng nhập</h1>
+            <div id="login-input">
+                <input type="email" name="email" id="loginEmail">
+                <input type="password" name="password" id="loginPassword">
+                <button id="loginButton">Đăng nhập</button>
+            </div>
+        </div> 
+        <div class="list">
+            <h1>List</h1>
+            <div id="list-input">
+                <input type="email" name="email" id="loginEmail">
+                <input type="password" name="password" id="loginPassword">
+                <button id="listButton">Đăng nhập</button>
+            </div>
+        </div>        
+        <div class="fix">
+            <h1>Fix</h1>
+            <div id="fix-input">
+                <input type="email" name="email" id="loginEmail">
+                <input type="password" name="password" id="loginPassword">
+                <button id="fixButton">Đăng nhập</button>
+            </div>
+        </div> 
+    </div>  
+</body>
+</html>
