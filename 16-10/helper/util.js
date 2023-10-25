@@ -25,13 +25,16 @@ const generateToken = (userId, expiresIn) => {
   // Tạo payload
   const payload = {
     userId: userId,
-    exp: expiresIn,
   };
 
   // Ký token
-  const token = jwt.sign(payload, "SECRET_k18");
+  const token = jwt.sign(payload, "SECRET_k18", { expiresIn });
 
   return token;
+};
+
+const verifyToken = (token) => {
+  return jwt.verify(token, "SECRET_k18");
 };
 const UTIL_HELPER = {
   validateEmail,
@@ -39,5 +42,6 @@ const UTIL_HELPER = {
   hashPassword,
   comparePassword,
   generateToken,
+  verifyToken,
 };
 module.exports = UTIL_HELPER;

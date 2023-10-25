@@ -9,8 +9,13 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 var cors = require("cors");
+const logMiddleWare = require("./middleware/log");
+const checkAuthMiddleware = require("./middleware/checkAuth");
+const connectMongo = require("./models/connect");
 
 app.use(cors());
+
+connectMongo()
 
 const randomUsersInit = (number) => {
   const users = [];
@@ -27,6 +32,16 @@ const randomUsersInit = (number) => {
   return users;
 };
 let users = randomUsersInit(10);
+const wallets = [
+  {
+    userId: "2023-10-23T15:23:56.208Z",
+    value: 1000,
+  },
+  {
+    userId: 2,
+    value: 2000,
+  },
+];
 app.get("/users", (req, res) => {
   console.log("---get-users---STARTING");
   console.log(qs.stringify({ keyword: " 1 " }));
@@ -57,7 +72,7 @@ app.get("/users", (req, res) => {
   //http://localhost:3000/users?age_gt=25&id_sort=-1&ids=1&ids=9
   return res.json(newUsers);
 });
-app.post("/signup", async (req, res) => {
+app.post("/signup", logMiddleWare, async (req, res) => {
   console.log("-----get---signup----START---");
   console.log(req.body);
   // login
@@ -160,7 +175,24 @@ app.post("/login", async (req, res) => {
     },
   });
 });
-
+app.get(
+  "/wallet",
+  checkAuthMiddleware,
+  (req, res, next) => {
+    console.log("50000");
+    console.log(req.userId);
+    const w = wallets.find((w) => w.userId === req.userId);
+    req.w = w;
+    next();
+  },
+  (req, res) => {
+    return res.status(STATUS_CODE.success).json({
+      error: false,
+      message: HTTP_MESSAGE.success,
+      data: req.w,
+    });
+  }
+);
 app.listen(3000, function () {
   console.log("Server is listening at 3000");
 });
