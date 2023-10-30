@@ -15,6 +15,8 @@ const connectMongo = require("./models/connect");
 
 app.use(cors());
 
+app.use(express.static('public'))
+
 connectMongo()
 
 const randomUsersInit = (number) => {
@@ -175,6 +177,18 @@ app.post("/login", async (req, res) => {
     },
   });
 });
+const multer = require('multer');
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, 'public/'); // Uploads will be stored in the 'uploads/' directory
+  },
+  filename: (req, file, cb) => {
+    console.log(file);
+    cb(null, Date.now() + '-' + file.originalname); // Use a unique filename
+  }
+});
+const upload = multer({ storage: storage });
+
 app.get(
   "/wallet",
   checkAuthMiddleware,
@@ -193,6 +207,14 @@ app.get(
     });
   }
 );
+
+app.post('/upload', upload.single('file'), (req, res) => {
+  if (!req.file) {
+    return res.status(400).send('No file was uploaded.');
+  }
+
+  res.send('File uploaded successfully.');
+});
 app.listen(3000, function () {
   console.log("Server is listening at 3000");
 });
