@@ -4,9 +4,12 @@ var bodyParser = require("body-parser");
 const STATUS_CODE = require("./constants/httpResponseCode");
 const HTTP_MESSAGE = require("./constants/httpErrorMessage");
 const UTIL_HELPER = require("./helper/util");
+const User = require("./models/user.model");
 const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+
+require("./models/connect")
 
 const randomUsersInit = (number) => {
   const users = [];
@@ -156,7 +159,21 @@ app.post("/login", async (req, res) => {
   });
 });
 
+app.get("/savetestdb",(req,res)=>{
+  const user = new User({ name: req.query.name,age:req.query.age });
+  user.save().then(() => console.log('meow'));
+  return res.json("luu thanh cong")
+})
+app.get("/findAlldb",async (req,res)=>{
+  const data= await User.find();
+  return res.json(data)
+})
+app.get("/put",async (req,res)=>{
+  await User.updateOne({ _id: req.query.id }, { $set: { name: 'foo' } })
+  return res.json("hehe")
+})
+
 app.listen(3000, function () {
   console.log("Server is listening at 3000");
 });
-//kknjbjjbnn
+
