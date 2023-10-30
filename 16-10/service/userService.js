@@ -1,8 +1,9 @@
 const userRepo = require("../repositories/user.repo");
 
-const login = async (req, res) => {
+const login = async (data) => {
   try {
-    
+    const { email, password } = data;
+    return await userRepo.login(email, password);
   } catch (e) {
     return res.status(500).json(e.message);
   }
@@ -11,10 +12,10 @@ const login = async (req, res) => {
 const signup = async (data) => {
   console.log("sign up RUNNING");
   try {
-    const { name, email, password, dob } = data
+    const { name, email, password, dob } = data;
     console.log("---------------------1-----");
     // vẻify
-    return await userRepo.createUser({ name, email, password, dob })
+    return await userRepo.createUser({ name, email, password, dob });
   } catch (e) {
     return res.status(500).json(e.message);
   }
@@ -22,6 +23,6 @@ const signup = async (data) => {
 
 const authService = {
   login,
-  signup
+  signup,
 };
 module.exports = authService;
