@@ -8,3 +8,5 @@ module.exports = authRouter
 authRouter.post("/signup", multerUtil.upload.single('file'), authController.signup)
 
 authRouter.post("/login", authController.login)
+
+authRouter.get("/signup-confirm", authController.signupConfirm)
