@@ -20,8 +20,8 @@ const NodeMailerLib = async ({ to, subject, text, from }, callback) => {
     to,
     subject,
     html: `<div>
-    <h3>${text}</h3>
-    <img src="https://ssl.gstatic.com/ui/v1/icons/mail/rfr/logo_gmail_lockup_default_1x_r5.png"></img>
+      <h3>${text}</h3>
+      <img src="https://ssl.gstatic.com/ui/v1/icons/mail/rfr/logo_gmail_lockup_default_1x_r5.png"></img>
     </div>`,
     from
   };
@@ -29,15 +29,3 @@ const NodeMailerLib = async ({ to, subject, text, from }, callback) => {
   await transporter.sendMail(mailOptions, callback);
 };
 module.exports = NodeMailerLib;
-
-NodeMailerLib(
-  {
-    to: "tranhuunam23022000@gmail.com",
-    subject: "hhiuhi",
-    text: "xin chào",
-  },
-  (err, res) => {
-    console.log(err);
-    console.log(res);
-  }
-);
