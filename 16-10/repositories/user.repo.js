@@ -4,19 +4,25 @@ const getUserById = async (id) => {
   return await User.findById(id);
 };
 
+const getUserByCondition = async (filter = {}) => {
+  return await User.findOne(filter);
+};
 const createUser = async ({ email, password, name, dob }) => {
   return await User.create({ email, password, name, dob });
 };
 
-const login = async ({ email, password }) => {
-  return await User.find(
-    (user) => user.email === email && user.password === password
-  );
+const deleteU = async (filter) => {
+  return await User.deleteOne(filter);
 };
 
+const update = async (filter, data) => {
+  return await User.updateOne(filter, data);
+};
 const userRepo = {
   getUserById,
   createUser,
-  login,
+  getUserByCondition,
+  deleteU,
+  update,
 };
 module.exports = userRepo;
