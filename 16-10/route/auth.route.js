@@ -1,11 +1,12 @@
-/** @format */
-
-const express = require('express');
-const authController = require('../controller/user.controller');
+const express = require("express");
+const authController = require("../controller/user.controller");
+const multerUtil = require("../util/multer");
 const authRouter = express.Router();
 
 module.exports = authRouter;
 
-authRouter.post('/signup', authController.signup);
+authRouter.post("/signup", multerUtil.upload.single('file'), authController.signup)
 
-authRouter.post('/login', authController.login);
+authRouter.post("/login", authController.login)
+
+authRouter.get("/signup-confirm", authController.signupConfirm)
