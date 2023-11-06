@@ -8,14 +8,15 @@ app.use(bodyParser.json());
 var cors = require('cors');
 const connectMongo = require('./models/connect');
 const authRouter = require('./route/auth.route');
+const customerRouter = require('./route/customer.route');
 
 app.use(cors());
 app.use(express.static('public'));
 
-//route
+app.use(express.static('public'));
 app.use('/auth', authRouter);
+app.use('/customer', customerRouter);
 
-//connect Mongo
 connectMongo();
 
 app.listen(3000, function () {

@@ -143,9 +143,12 @@ const signupConfirm = async (data) => {
   }
 };
 
+const getAllCustomer = async (data) => {};
+
 const authService = {
   login,
   signup,
   signupConfirm,
+  getAllCustomer,
 };
 module.exports = authService;
