@@ -1,4 +1,8 @@
-const getAllCustomer = async (data) => {};
+const getAllCustomer = async () => {
+  return {
+    data: true,
+  };
+};
 
 const customerService = {
   getAllCustomer,
