@@ -14,10 +14,11 @@ const login = async (req, res) => {
 
 const signup = async (req, res) => {
   try {
+    console.log("singup------------RUNNING");
     console.log(req.file);
     console.log(req.body);
-
-    const data = await authService.signup(req.body);
+    
+    const data = await authService.signup(req.body, req.file);
     if (data?.error) {
       res.status(data.code).json(data.message);
     }
