@@ -1,5 +1,6 @@
 /** @format */
 
+const STATUS_CODE = require('../constants/httpResponseCode');
 const authService = require('../service/userService');
 
 const login = async (req, res) => {
@@ -13,18 +14,12 @@ const login = async (req, res) => {
 
 const signup = async (req, res) => {
    try {
-      const data = await authService.signup(req.body);
-      return res.status(STATUS_CODE.created).json({
-         error: false,
-         message: HTTP_MESSAGE.success,
-         data: data,
-      });
+      const {email, password, name, age} = req.body;
+
+      const data = await authService.signup({email, password, name, age});
+      return res.status(STATUS_CODE.created).json(data);
    } catch (e) {
-      return res.status(STATUS_CODE.errorServer).json({
-         error: true,
-         message: HTTP_MESSAGE.emailNotVerify,
-         data: null,
-      });
+      return res.status(STATUS_CODE.errorServer).json(e.message);
    }
 };
 

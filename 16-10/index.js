@@ -12,8 +12,10 @@ const authRouter = require('./route/auth.route');
 app.use(cors());
 app.use(express.static('public'));
 
-app.use(express.static('public'));
+//route
 app.use('/auth', authRouter);
+
+//connect Mongo
 connectMongo();
 
 app.listen(3000, function () {

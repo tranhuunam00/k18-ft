@@ -1,15 +1,16 @@
-const User = require("../models/user.model")
+/** @format */
+
+const User = require('../models/user.model');
 
 const getUserById = async (id) => {
-  return await User.findById(id)
-}
+   return await User.findById(id);
+};
 
-
-const createUser = async ({email,password,name,dob}) => {
-  return await User.create({ email, password, name, dob })
-}
+const createUser = async (newUser) => {
+   return await User.create(newUser);
+};
 const userRepo = {
-  getUserById,
-  createUser
-}
-module.exports = userRepo
+   getUserById,
+   createUser,
+};
+module.exports = userRepo;
