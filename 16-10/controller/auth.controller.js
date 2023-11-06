@@ -1,4 +1,4 @@
-const authService = require("../service/userService");
+const authService = require("../service/authService");
 
 const login = async (req, res) => {
   try {
@@ -45,6 +45,6 @@ const signupConfirm= async (req, res) => {
 const authController = {
   login,
   signup,
-  signupConfirm
+  signupConfirm,
 };
 module.exports = authController;
