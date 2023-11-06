@@ -5,24 +5,46 @@ const HelperApp = require("../util/helper");
 const NodeMailerLib = require("../util/nodemailer");
 
 const login = async (data) => {
-  try {
-    const { email, password } = data;
-    const user = await userRepo.getUserByCondition({
-      status: 2,
-      email,
-      password,
-    });
-    if (!user) {
-      return {
-        error: true,
-        code: 404,
-        message: "User không tồn tại",
-      };
-    }
+  console.log("login up RUNNING");
+
+  const { email, password } = data;
+  const user = await userRepo.getUserByCondition({
+    status: 2,
+    email,
+  });
+  if (!user) {
     return {
-      data: user,
+      error: true,
+      code: STATUS_CODE.notFounded,
+      message: "User không tồn tại",
     };
-  } catch (e) {}
+  }
+  if (!(await HelperApp.comparePassWordMd5(password, user.password))) {
+    console.log("---------22-----1");
+    return {
+      error: true,
+      code: STATUS_CODE.badRequest,
+      message: "Mật khẩu không khớp",
+    };
+  }
+  console.log("--------------1");
+  delete user.password;
+
+  const token = HelperApp.generateJwtToken(
+    {
+      ...user,
+    },
+    30 * 60 * 1000
+  );
+  console.log("--------------2---", token);
+
+  console.log("users", user);
+  return {
+    data: {
+      token,
+      user,
+    },
+  };
 };
 
 const signup = async (data, file) => {
@@ -60,9 +82,9 @@ const signup = async (data, file) => {
     await userRepo.deleteU({
       email,
     });
-    await customerRepo.deleteU({
-      userId: oldUser._id,
-    });
+    // await customerRepo.deleteU({
+    //   userId: oldUser._id,
+    // });
   }
 
   const newUser = await userRepo.createUser({
@@ -73,15 +95,20 @@ const signup = async (data, file) => {
     status: 1,
   });
   console.log(file);
-  const newCustomer = await customerRepo.createCustomer({
-    avatar: file?.filename,
-    phoneNumber,
-    userId: newUser._id,
-  });
+  // const newCustomer = await customerRepo.createCustomer({
+  //   avatar: file?.filename,
+  //   phoneNumber,
+  //   userId: newUser._id,
+  // });
 
-  const token = HelperApp.generateJwtToken({
-    id: newUser._id,
-  });
+  const token = HelperApp.generateJwtToken(
+    {
+      id: newUser._id,
+      phoneNumber,
+      avatar: file?.filename,
+    },
+    30 * 60
+  );
 
   // await NodeMailerLib({
   //   to: email,
@@ -95,15 +122,20 @@ const signup = async (data, file) => {
 
 const signupConfirm = async (data) => {
   const { token } = data;
-  const { id } = HelperApp.decodeToken(token);
+  const { id, avatar, phoneNumber } = HelperApp.decodeToken(token);
   console.log(id);
   const user = await userRepo.getUserByCondition({
     status: 1,
-    id: id,
+    _id: id,
   });
   if (user) {
     console.log("user", user);
     await userRepo.update({ _id: id }, { status: 2 });
+    const newCustomer = await customerRepo.createCustomer({
+      avatar: avatar,
+      phoneNumber,
+      userId: id,
+    });
   } else {
     return {
       data: "That bai",

@@ -5,7 +5,9 @@ const authService = require('../service/userService');
 
 const login = async (req, res) => {
   try {
+    console.log("controller login");
     const data = await authService.login(req.body);
+    console.log("data",data);
     if (data?.error) {
       res.status(data.code).json(data.message);
     }
