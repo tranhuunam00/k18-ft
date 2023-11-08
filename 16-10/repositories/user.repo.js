@@ -4,6 +4,9 @@ const getUserById = async (id) => {
   return await User.findById(id);
 };
 
+const getAllByCondition = async (filter = {}) => {
+  return await User.find(filter);
+};
 const getUserByCondition = async (filter = {}) => {
   return await User.findOne(filter);
 };
@@ -24,5 +27,6 @@ const userRepo = {
   getUserByCondition,
   deleteU,
   update,
+  getAllByCondition
 };
 module.exports = userRepo;

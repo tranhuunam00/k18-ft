@@ -13,3 +13,15 @@ sellerRouter.post(
   multerUtil.upload.single("file"),
   sellerController.createSeller
 );
+
+
+sellerRouter.get(
+  "/",
+  middlewareAuth.checkLogin,
+  (req, res, next) => {
+    req.permission = [2]; //
+    next();
+  },  // tạo 1 quyền cho đường dẫn này
+  middlewareAuth.checkPermission, //
+  sellerController.getAllSeller
+);

@@ -22,6 +22,8 @@ const userSchema = new Schema(
   { timestamps: true }
 );
 
-userSchema.plugin(mongoose_delete,  { deletedAt : true });
+userSchema.plugin(mongoose_delete, { deletedAt: true });
+userSchema.plugin(mongoose_delete, { overrideMethods: true });
+
 const User = mongoose.model("users", userSchema);
 module.exports = User;

@@ -22,6 +22,9 @@ const sellerSchema = new Schema(
   { timestamps: true }
 );
 
-sellerSchema.plugin(mongoose_delete,  { deletedAt : true });
+
+sellerSchema.plugin(mongoose_delete, { deletedAt: true });
+sellerSchema.plugin(mongoose_delete, { overrideMethods: true });
 const Seller = mongoose.model("sellers", sellerSchema);
+
 module.exports = Seller;

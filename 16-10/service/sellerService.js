@@ -31,7 +31,15 @@ const create = async (body, file, loginUser) => {
   };
 };
 
+
+const getAllSeller = async () => {
+  const data = await SellerRepo.getSellersByCondition()
+  return {
+    data
+  }
+}
 const sellerService = {
   create,
+  getAllSeller
 };
 module.exports = sellerService;
