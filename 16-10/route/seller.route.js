@@ -25,3 +25,14 @@ sellerRouter.get(
   middlewareAuth.checkPermission, //
   sellerController.getAllSeller
 );
+
+sellerRouter.put(
+  "/status",
+  middlewareAuth.checkLogin,
+  (req, res, next) => {
+    req.permission = [2]; //
+    next();
+  },  // tạo 1 quyền cho đường dẫn này
+  middlewareAuth.checkPermission, //
+  sellerController.updateStatus
+);
