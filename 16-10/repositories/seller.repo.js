@@ -5,6 +5,9 @@ const Seller = require('../models/seller.model');
 const getSellerById = async (id) => {
    return await Seller.findById(id);
 };
+const getSellersByCondition = async (filter = {}) => {
+   return await Seller.find(filter);
+};
 
 const getSellerByCondition = async (filter = {}) => {
    return await Seller.findOne(filter);
@@ -14,17 +17,18 @@ const createSeller = async (data) => {
 };
 
 const deleteU = async (filter) => {
-   return await Seller.deleteOne(filter);
+   return await Seller.delete(filter);
 };
 
 const update = async (filter, data) => {
    return await Seller.updateOne(filter, data);
 };
-const sellerRepo = {
+const SellerRepo = {
    getSellerById,
-   getSellerByCondition,
    createSeller,
+   getSellerByCondition,
    deleteU,
    update,
+   getSellersByCondition,
 };
-module.exports = sellerRepo;
+module.exports = SellerRepo;
