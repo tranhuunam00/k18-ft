@@ -9,11 +9,11 @@ module.exports = customerRouter;
 
 customerRouter.get(
   "/",
-  middlewareAuth.checkLogin,
+  middlewareAuth.checkLogin, // kiểm tra ai đăng nhập
   (req, res, next) => {
     req.permission = [2]; //
     next();
-  },
-  middlewareAuth.checkPermission,
+  },  // tạo 1 quyền cho đường dẫn này
+  middlewareAuth.checkPermission, // 
   customerController.getAll
 );

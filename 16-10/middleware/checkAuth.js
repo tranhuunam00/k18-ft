@@ -39,8 +39,8 @@ const checkLogin = async (req, res, next) => {
 };
 
 const checkPermission = async (req, res, next) => {
-  const permission = req.permission;
-  const loginUser = req.loginUser;
+  const permission = req.permission; //[]
+  const loginUser = req.loginUser;  //{id:role}
   if (permission.includes(loginUser.role)) {
     return next();
   }

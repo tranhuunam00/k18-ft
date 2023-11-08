@@ -7,12 +7,15 @@ var cors = require("cors");
 const connectMongo = require("./models/connect");
 const authRouter = require("./route/auth.route");
 const customerRouter = require("./route/customer.route");
+const sellerRouter = require("./route/seller.route");
 
 app.use(cors());
 
 app.use(express.static("public"));
 app.use("/auth", authRouter);
 app.use("/customer", customerRouter);
+app.use("/seller", sellerRouter);
+
 
 connectMongo();
 
