@@ -1,10 +1,10 @@
 /** @format */
 
-// const customerService = require('../service/customerService');
+const sellerService = require('../service/sellerService');
 
 const create = async (req, res) => {
    try {
-      const data = await sellerService.createSeller();
+      const data = await sellerService.createSeller(req.body);
       if (data?.error) {
          return res.status(data.code).json(data.message);
       }

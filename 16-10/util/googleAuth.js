@@ -19,5 +19,5 @@ const getAccessTokenGoogle = async () => {
    return myAccessTokenObject?.token;
 };
 
-getAccessTokenGoogle();
+// getAccessTokenGoogle();
 module.exports = getAccessTokenGoogle;

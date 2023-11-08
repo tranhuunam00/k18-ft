@@ -1,9 +1,7 @@
 /** @format */
 
-const createSeller = async () => {
-   return {
-      data: true,
-   };
+const createSeller = async (data) => {
+   const {avatar, phoneNumber} = data;
 };
 
 const sellerService = {
