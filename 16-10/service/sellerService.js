@@ -22,6 +22,10 @@ const create = async (body, file, loginUser) => {
     avatar,
   });
 
+  await SellerRepo.deleteU({
+    _id: seller._id
+  })
+
   return {
     data: seller,
   };

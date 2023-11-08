@@ -12,7 +12,7 @@ const createSeller = async (data) => {
 };
 
 const deleteU = async (filter) => {
-  return await Seller.deleteOne(filter);
+  return await Seller.delete(filter);
 };
 
 const update = async (filter, data) => {
