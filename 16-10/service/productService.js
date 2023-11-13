@@ -27,7 +27,7 @@ const createProduct = async (body, file, seller) => {
     return {
       error: true,
       message: "Không đủ thông tin",
-      code: 400
+      code: 400,
     };
   const newProduct = await ProductRepo.createProduct({
     sellerId: seller._id,
@@ -55,17 +55,78 @@ const createProduct = async (body, file, seller) => {
   };
 };
 
+const createSizeColor = async (body, files, seller) => {
+  console.log("files", files);
+  console.log("body", body);
+  const { price, amount, sizeCodes, colorCode, productId } = body;
+  const product = await ProductRepo.getProductById(productId);
+  console.log(product);
+  console.log(seller._id);
+  if (!product || product.sellerId.toString() != seller._id.toString()) {
+    return {
+      error: true,
+      message: "Sản phẩm không tồn tại",
+      code: 404,
+    };
+  }
 
-const createSizeColor = async (body, files) => {
-  console.log("files",files);
-  console.log("body",body);
-
-  
-}
+  if (
+    sizeCodes.some((s) => {
+      return !CONST_APP.SIZE[s];
+    })
+  ) {
+    return {
+      error: true,
+      message: "Size không hợp lệ",
+      code: 404,
+    };
+  }
+  if (!CONST_APP.COLOR[colorCode]) {
+    return {
+      error: true,
+      message: "Màu không hợp lệ",
+      code: 404,
+    };
+  }
+  const process = [];
+  let error = false;
+  for (let size of sizeCodes) {
+    console.log("size", size);
+    const data = await ProductSizeColorRepo.getProductSizeColorByCondition({
+      productId,
+      sizeCode: size,
+      colorCode,
+    });
+    if (data) {
+      error = true;
+      break;
+    }
+    process.push(
+      ProductSizeColorRepo.createProductSizeColor({
+        productId,
+        sizeCode: size,
+        colorCode,
+        price,
+        amount,
+      })
+    );
+  }
+  if (error) {
+    return {
+      error: true,
+      message: "Loại sản phẩm đã tồn tại. Vui lòng kiếm tra",
+      code: 404,
+    };
+  }
+  await Promise.all(process);
+  return {
+    data: true,
+  };
+};
 const productService = {
   getColors,
   getSize,
   createProduct,
-  createSizeColor
+  createSizeColor,
 };
 module.exports = productService;
