@@ -4,11 +4,18 @@ const SellerRepo = require("../repositories/seller.repo");
 const userRepo = require("../repositories/user.repo");
 const { login } = require("./authService");
 
-const create = async (body, file, loginUser) => {
+const create = async (body, file, loginUser,sellerLogin) => {
   console.log("file", file);
   const { name, phoneNumber } = body;
   console.log("body",body);
   const avatar = file?.filename;
+  if (sellerLogin) {
+    return {
+      error: true,
+      message: "Đã tồn tại seller",
+      code: STATUS_CODE.badRequest,
+    };
+  }
   if ( !name || !phoneNumber || !avatar) {
     return {
       error: true,
@@ -22,10 +29,6 @@ const create = async (body, file, loginUser) => {
     phoneNumber,
     avatar,
   });
-
-  await SellerRepo.deleteU({
-    _id: seller._id
-  })
 
   return {
     data: seller,

@@ -3,7 +3,7 @@ const sellerService = require("../service/sellerService");
 const createSeller = async (req,res) => {
   try {
     console.log("createSeller RUN");
-    const data = await sellerService.create(req.body, req.file, req.loginUser)
+    const data = await sellerService.create(req.body, req.file, req.loginUser, req.seller)
     if (data?.error) {
       return res.status(data.code).json(data.message);
     }

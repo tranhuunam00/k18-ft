@@ -17,8 +17,7 @@ const checkLogin = async (req, res, next) => {
   const [bear, token] = bearToken.split(" ");
   try {
     const data = HelperApp.decodeToken(token);
-
-    const [user, seller, customer] = Promise.all([
+    const [user, seller, customer] = await Promise.all([
       userRepo.getUserById(data?._doc?._id),
       SellerRepo.getSellerByCondition({
         userId: data?._doc?._id,
@@ -27,9 +26,8 @@ const checkLogin = async (req, res, next) => {
         userId: data?._doc?._id,
       }),
     ]);
-
-    console.log("user", user);
-
+    console.log(data?._doc?._id);
+    console.log(seller);
     if (!user) {
       return res.status(STATUS_CODE.notFounded).json({
         error: true,
@@ -69,12 +67,12 @@ const checkPermission = async (req, res, next) => {
 const checkPerson = async (req, res, next) => {
   const person = req.person;  // ["seller","customer"]
   // REQ.LOGIN REQ.SELLER REQ.CUSTIMER
-  const check = false
+  let check = false
   for (let p of person) {
-    if (p == CONST_APP.PERSON.seller && req[CONST_APP.PERSON.seller]) {
+    if (p == CONST_APP.PERSON.seller && req[p]) {
       check = true
     }
-    if (p == CONST_APP.PERSON.customer && req[CONST_APP.PERSON.customer]) {
+    if (p == CONST_APP.PERSON.customer && req[p]) {
       check = true
     }
   }
