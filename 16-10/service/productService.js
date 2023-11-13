@@ -69,7 +69,13 @@ const createSizeColor = async (body, files, seller) => {
       code: 404,
     };
   }
-
+  if (!price || !amount || !files?.length) {
+    return {
+      error: true,
+      message: "Truyền sai",
+      code: 404,
+    };
+  }
   if (
     sizeCodes.some((s) => {
       return !CONST_APP.SIZE[s];
@@ -119,6 +125,11 @@ const createSizeColor = async (body, files, seller) => {
     };
   }
   await Promise.all(process);
+  await ProductColorImgRepo.createProductColorImg({
+    productId,
+    colorCode: CONST_APP.COLOR.DEFAULT.code,
+    img: files.map((f) => f.filename),
+  });
   return {
     data: true,
   };
