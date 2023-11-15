@@ -13,9 +13,21 @@ const COLOR = {
     code: "GREEN",
     name: "xanh lá cây",
   },
+  VIOLET:{
+    code: "VIOLET",
+    name: "tím",
+  },
   BLUE: {
     code: "BLUE",
     name: "xanh da trời",
+  },
+  BLACK: {
+    code: "BLACK",
+    name: "đen",
+  },
+  YELLOW: {
+    code: "YELLOW",
+    name: "vàng",
   },
   DEFAULT: {
     code: "DEFAULT",
@@ -36,12 +48,20 @@ const SIZE = {
     code: "DEFAULT",
     name: "mặc định",
   },
+  S: {
+    code: "S",
+    name: "S",
+  },
+  29: {
+    code: "29",
+    name: "29",
+  },
 };
 const CONST_APP = {
   STATUS_SELLER,
   PERSON,
   COLOR,
-  SIZE
+  SIZE,
 };
 
 module.exports = CONST_APP;

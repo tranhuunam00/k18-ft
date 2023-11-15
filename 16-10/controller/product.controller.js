@@ -4,7 +4,7 @@ const productService = require("../service/productService");
 const getColors = async (req, res) => {
   try {
     console.log("controller getColors");
-    const data = await productService.getColors();
+    const data = await productService.getColors(req.query);
     if (data?.error) {
       return res.status(data.code).json(data.message);
     }

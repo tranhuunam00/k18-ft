@@ -11,16 +11,16 @@ module.exports = productRouter;
 
 productRouter.post(
   "/",
-  middlewareAuth.checkLogin,
+  middlewareAuth.checkLogin,  // xac dinh ai dang nhap
   (req, res, next) => {
     // req.permission = [1]; //
     req.person = [CONST_APP.PERSON.seller]
     next();
-  },  // tạo 1 quyền cho đường dẫn này
+  },  // tạo 1 quyền cho đường dẫn này 
   // middlewareAuth.checkPermission, //
   middlewareAuth.checkPerson, // 
   multerUtil.upload.single('file'),
-  productController.createProduct
+  productController.createProduct  //action ------
 );
 
 productRouter.post(

@@ -7,9 +7,17 @@ const SellerRepo = require("../repositories/seller.repo");
 const userRepo = require("../repositories/user.repo");
 const { login } = require("./authService");
 
-const getColors = async () => {
+const getColors = async (query) => {
+  const { filter } = query;
+  console.log(filter);
+  const data = {};
+  for (let key of Object.keys(CONST_APP.COLOR)) {
+    if (key.toLowerCase().includes(filter.toLowerCase())) {
+      data[key] = CONST_APP.COLOR[key];
+    }
+  }
   return {
-    data: CONST_APP.COLOR,
+    data,
   };
 };
 

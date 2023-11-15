@@ -18,11 +18,11 @@ const checkLogin = async (req, res, next) => {
   try {
     const data = HelperApp.decodeToken(token);
     const [user, seller, customer] = await Promise.all([
-      userRepo.getUserById(data?._doc?._id),
+      userRepo.getUserById(data?._doc?._id), // 1
       SellerRepo.getSellerByCondition({
-        userId: data?._doc?._id,
+        userId: data?._doc?._id,  //2s
       }),
-      customerRepo.getCustomerByCondition({
+      customerRepo.getCustomerByCondition({  //3w
         userId: data?._doc?._id,
       }),
     ]);
