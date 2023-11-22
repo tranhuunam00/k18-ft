@@ -1,12 +1,12 @@
 const authService = require("../service/authService");
+const customerService = require("../service/customerService");
 
 const getAll = async (req, res) => {
   try {
     console.log("controller getAll");
-    const data = await authService.login(req.body);
-    console.log("data", data);
+    const data = await customerService.getAllCustomer()
     if (data?.error) {
-      res.status(data.code).json(data.message);
+      return res.status(data.code).json(data.message);
     }
     return res.status(200).json(data?.data);
   } catch (e) {
@@ -15,6 +15,6 @@ const getAll = async (req, res) => {
 };
 
 const customerController = {
-  login,
+  getAll,
 };
 module.exports = customerController;
