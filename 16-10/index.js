@@ -9,6 +9,7 @@ const authRouter = require("./route/auth.route");
 const customerRouter = require("./route/customer.route");
 const sellerRouter = require("./route/seller.route");
 const productRouter = require("./route/product.route");
+const cartRouter = require("./route/cart.route");
 
 app.use(cors());
 
@@ -17,6 +18,8 @@ app.use("/auth", authRouter);
 app.use("/customer", customerRouter);
 app.use("/seller", sellerRouter);
 app.use("/product", productRouter);
+app.use("/cart", cartRouter);
+
 
 
 
