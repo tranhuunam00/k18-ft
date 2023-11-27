@@ -143,10 +143,19 @@ const createSizeColor = async (body, files, seller) => {
     data: true,
   };
 };
+
+const getAllSizeColorProduct = async () => {
+  
+  const data = await ProductSizeColorRepo.getAllByCondition()
+  return {
+    data
+  }
+}
 const productService = {
   getColors,
   getSize,
   createProduct,
   createSizeColor,
+  getAllSizeColorProduct
 };
 module.exports = productService;

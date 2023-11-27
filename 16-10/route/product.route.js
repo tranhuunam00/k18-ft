@@ -40,5 +40,10 @@ productRouter.post(
 productRouter.get("/color", productController.getColors)
 productRouter.get("/size", productController.getSize)
 
+productRouter.get("/size-color-all", productController.getAllSizeColorProduct)
+
+
+
+
 
 

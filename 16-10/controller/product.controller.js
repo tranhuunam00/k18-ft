@@ -1,4 +1,5 @@
 const CONST_APP = require("../constants/constant");
+const ProductColorImgRepo = require("../repositories/productColorImg.repo");
 const productService = require("../service/productService");
 
 const getColors = async (req, res) => {
@@ -60,10 +61,24 @@ const createSizeColor = async (req, res) => {
     return res.status(e?.status || 500).json(e.message);
   }
 };
+
+const getAllSizeColorProduct = async (req, res) => {
+  try {
+    console.log("controller createSizeColor");
+    const data = await productService.getAllSizeColorProduct();
+    if (data?.error) {
+      return res.status(data.code).json(data.message);
+    }
+    return res.status(200).json(data?.data);
+  } catch (e) {
+    return res.status(e?.status || 500).json(e.message);
+  }
+};
 const productController = {
   getColors,
   getSize,
   createProduct,
-  createSizeColor
+  createSizeColor,
+  getAllSizeColorProduct,
 };
 module.exports = productController;
