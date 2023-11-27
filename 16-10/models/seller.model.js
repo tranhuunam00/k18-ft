@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
-var mongoose_delete = require('mongoose-delete');
+var mongoose_delete = require('mongoose-delete'); // soft-delete
 
 const sellerSchema = new Schema(
   {
@@ -16,11 +16,11 @@ const sellerSchema = new Schema(
       type: Number,
       default: 1,
     },
-
-    // status = 1: chưa accept mail 2: ok  3: ban
   },
   { timestamps: true }
 );
+
+// find if detele next
 
 
 sellerSchema.plugin(mongoose_delete, { deletedAt: true });

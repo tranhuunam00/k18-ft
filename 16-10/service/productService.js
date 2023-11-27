@@ -67,6 +67,13 @@ const createSizeColor = async (body, files, seller) => {
   console.log("files", files);
   console.log("body", body);
   const { price, amount, sizeCodes, colorCode, productId } = body;
+  if (!price || !amount || !files?.length) {
+    return {
+      error: true,
+      message: "Truyền sai",
+      code: 404,
+    };
+  }
   const product = await ProductRepo.getProductById(productId);
   console.log(product);
   console.log(seller._id);
@@ -77,13 +84,7 @@ const createSizeColor = async (body, files, seller) => {
       code: 404,
     };
   }
-  if (!price || !amount || !files?.length) {
-    return {
-      error: true,
-      message: "Truyền sai",
-      code: 404,
-    };
-  }
+ 
   if (
     sizeCodes.some((s) => {
       return !CONST_APP.SIZE[s];
@@ -107,13 +108,13 @@ const createSizeColor = async (body, files, seller) => {
   for (let size of sizeCodes) {
     console.log("size", size);
     const data = await ProductSizeColorRepo.getProductSizeColorByCondition({
-      productId,
+      productId,  
       sizeCode: size,
       colorCode,
     });
     if (data) {
       error = true;
-      break;
+      break
     }
     process.push(
       ProductSizeColorRepo.createProductSizeColor({
