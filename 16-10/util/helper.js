@@ -28,8 +28,8 @@ const getPagination = (pagination) => {
   if (!page || +page < 0 || Math.floor(+page) != +page) {
     pagination.page = 1;
   }
-  pagination.limit = +pagination.limit
-  pagination.page = +pagination.page
+  pagination.limit = +pagination.limit;
+  pagination.page = +pagination.page;
   return pagination;
 };
 const HelperApp = {
@@ -37,7 +37,7 @@ const HelperApp = {
   comparePassWordMd5,
   generateJwtToken,
   decodeToken,
-  getPagination
+  getPagination,
 };
 
 module.exports = HelperApp;
