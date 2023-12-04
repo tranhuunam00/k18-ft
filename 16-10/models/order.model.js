@@ -1,11 +1,8 @@
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
 var mongoose_delete = require("mongoose-delete");
+const CONST_APP = require("../constants/constant");
 
-export const TypePaymentEnum = {
-  COD: "COD",
-  BANK: "BANK",
-};
 const orderSchema = new Schema(
   {
     customerId: {
@@ -47,7 +44,7 @@ const orderSchema = new Schema(
     },
     typePayment: {
       type: String,
-      enum: Object.values(TypePaymentEnum),
+      enum: Object.values(CONST_APP.TypePaymentEnum),
       require: true,
     },
 

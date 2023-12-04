@@ -10,6 +10,7 @@ const customerRouter = require("./route/customer.route");
 const sellerRouter = require("./route/seller.route");
 const productRouter = require("./route/product.route");
 const cartRouter = require("./route/cart.route");
+const orderRouter = require("./route/order.route");
 
 app.use(cors());
 
@@ -19,9 +20,7 @@ app.use("/customer", customerRouter);
 app.use("/seller", sellerRouter);
 app.use("/product", productRouter);
 app.use("/cart", cartRouter);
-
-
-
+app.use("/order", orderRouter);
 
 connectMongo();
 
