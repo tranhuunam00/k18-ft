@@ -10,7 +10,7 @@ const orderSchema = new Schema(
       ref: "customers",
       require: true,
     },
-    amount: {
+    totalPrice: {
       type: Number,
       require: true,
     },

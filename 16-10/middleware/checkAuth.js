@@ -6,7 +6,6 @@ const userRepo = require("../repositories/user.repo");
 const HelperApp = require("../util/helper");
 
 const checkLogin = async (req, res, next) => {
-  console.log(req.headers.authorization);
   const bearToken = req.headers?.authorization;
   if (!bearToken) {
     return res.status(STATUS_CODE.badRequest).json({
@@ -20,14 +19,13 @@ const checkLogin = async (req, res, next) => {
     const [user, seller, customer] = await Promise.all([
       userRepo.getUserById(data?._doc?._id), // 1
       SellerRepo.getSellerByCondition({
-        userId: data?._doc?._id,  //2s
+        userId: data?._doc?._id, //2s
       }),
-      customerRepo.getCustomerByCondition({  //3w
+      customerRepo.getCustomerByCondition({
+        //3w
         userId: data?._doc?._id,
       }),
     ]);
-    console.log(data?._doc?._id);
-    console.log(seller);
     if (!user) {
       return res.status(STATUS_CODE.notFounded).json({
         error: true,
@@ -65,19 +63,19 @@ const checkPermission = async (req, res, next) => {
 };
 
 const checkPerson = async (req, res, next) => {
-  const person = req.person;  // ["seller","customer"]
+  const person = req.person; // ["seller","customer"]
   // REQ.LOGIN REQ.SELLER REQ.CUSTIMER
-  let check = false
+  let check = false;
   for (let p of person) {
     if (p == CONST_APP.PERSON.seller && req[p]) {
-      check = true
+      check = true;
     }
     if (p == CONST_APP.PERSON.customer && req[p]) {
-      check = true
+      check = true;
     }
   }
   if (check) {
-    return next()
+    return next();
   }
   // if (person.some((p) => req[p])) {
   //   return next();
