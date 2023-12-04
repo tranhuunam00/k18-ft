@@ -2,14 +2,16 @@ const { default: mongoose } = require("mongoose");
 const ProductSizeColor = require("../models/productSizeColor.model");
 const CartRepo = require("../repositories/cart.repo");
 const ProductSizeColorRepo = require("../repositories/productSizeColor.repo");
+const ProductRepo = require("../repositories/product.repo");
+const ProductColorImgRepo = require("../repositories/productColorImg.repo");
+const HelperApp = require("../util/helper");
 
 const createCart = async (data, customer) => {
   const { productSizeColorId, amount } = data;
   console.log(data);
   if (
     !productSizeColorId ||
-    !amount |
-    +amount < 0 ||
+    !amount | (+amount < 0) ||
     Math.floor(+amount) != +amount
   ) {
     return {
@@ -46,10 +48,10 @@ const createCart = async (data, customer) => {
     // da co ban gi
     const amountOld = existCart.amount;
     const newAmount = amountOld + amount;
-    console.log("newAmount",newAmount);
+    console.log("newAmount", newAmount);
     await CartRepo.update(
       {
-        _id: existCart._id
+        _id: existCart._id,
       },
       {
         amount: newAmount,
@@ -61,7 +63,48 @@ const createCart = async (data, customer) => {
   };
 };
 
+const getCarts = async (query, customer) => {
+  const pagination = HelperApp.getPagination(query);
+
+  console.log("pagination", pagination);
+  const count = await CartRepo.count({
+    customerId: customer._id,
+  });
+  const data = await CartRepo.getAllByCondition(
+    {
+      customerId: customer._id,
+    },
+    pagination,
+    query.sort || -1
+  );
+  const carts = JSON.parse(JSON.stringify(data));
+  for (let cart of carts) {
+    const productSizeColor = await ProductSizeColorRepo.getProductSizeColorById(
+      cart.productSizeColorId
+    );
+    const [product, productImgs] = await Promise.all([
+      ProductRepo.getProductById(productSizeColor.productId),
+      ProductColorImgRepo.getProductColorImgByCondition({
+        productId: productSizeColor.productId,
+        colorCode: productSizeColor.colorCode,
+      }),
+    ]);
+    console.log("cart", cart._id);
+    console.log("productSizeColor", productSizeColor);
+    cart.productSizeColor = productSizeColor;
+    cart.product = product;
+    cart.productImgs = productImgs;
+  }
+  return {
+    data: {
+      carts,
+      totalPage: Math.floor(count / pagination.limit) + 1,
+      pagination,
+    },
+  };
+};
 const cartService = {
   createCart,
+  getCarts,
 };
 module.exports = cartService;

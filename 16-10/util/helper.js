@@ -19,11 +19,25 @@ const generateJwtToken = (data, expireTime = 30) => {
 const decodeToken = (token) => {
   return jwt.verify(token, SECRET);
 };
+
+const getPagination = (pagination) => {
+  const { limit, page } = pagination;
+  if (!limit || +limit < 0 || Math.floor(+limit) != +limit) {
+    pagination.limit = 5;
+  }
+  if (!page || +page < 0 || Math.floor(+page) != +page) {
+    pagination.page = 1;
+  }
+  pagination.limit = +pagination.limit
+  pagination.page = +pagination.page
+  return pagination;
+};
 const HelperApp = {
   hashPw,
   comparePassWordMd5,
   generateJwtToken,
   decodeToken,
+  getPagination
 };
 
 module.exports = HelperApp;

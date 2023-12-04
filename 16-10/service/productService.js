@@ -116,6 +116,7 @@ const createSizeColor = async (body, files, seller) => {
       error = true;
       break
     }
+    console.log("colorCode",colorCode);
     process.push(
       ProductSizeColorRepo.createProductSizeColor({
         productId,
@@ -136,7 +137,7 @@ const createSizeColor = async (body, files, seller) => {
   await Promise.all(process);
   await ProductColorImgRepo.createProductColorImg({
     productId,
-    colorCode: CONST_APP.COLOR.DEFAULT.code,
+    colorCode: colorCode,
     img: files.map((f) => f.filename),
   });
   return {

@@ -20,3 +20,15 @@ cartRouter.post(
   middlewareAuth.checkPerson,
   cartController.createCart
 );
+
+cartRouter.get(
+  "/",
+  middlewareAuth.checkLogin,
+  (req, res, next) => {
+    // req.permission = [1]; //
+    req.person = [CONST_APP.PERSON.customer];
+    next();
+  },
+  middlewareAuth.checkPerson,
+  cartController.getCart
+);
