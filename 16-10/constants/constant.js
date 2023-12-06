@@ -13,7 +13,7 @@ const COLOR = {
     code: "GREEN",
     name: "xanh lá cây",
   },
-  VIOLET:{
+  VIOLET: {
     code: "VIOLET",
     name: "tím",
   },
@@ -57,11 +57,17 @@ const SIZE = {
     name: "29",
   },
 };
+
+const TypePaymentEnum = {
+  COD: "COD",
+  BANK: "BANK",
+};
 const CONST_APP = {
   STATUS_SELLER,
   PERSON,
   COLOR,
   SIZE,
+  TypePaymentEnum,
 };
 
 module.exports = CONST_APP;
