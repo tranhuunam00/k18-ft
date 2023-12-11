@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Socket.IO Chat</title>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.1.2/socket.io.js"></script>
+  </head>
+  <body>
+    <input type="text" id="message" />
+    <button type="button" id="send">Send</button>
+
+    <ul id="messages"></ul>
+
+    <script>
+      var socket = io("localhost:3001");
+
+      // Send a message when the send button is clicked
+      document.getElementById("send").addEventListener("click", () => {
+        var message = document.getElementById("message").value;
+        socket.emit("message", message);
+      });
+
+      // ấn gửi : chưa hiện
+      // socket trên server nhận => emit cho tất cả => gửi cả nó
+
+      // Listen for incoming messages
+      socket.on("message", (message) => {
+        console.log("đã nhận được 1 tin nhắn ", message);
+        var messages = document.getElementById("messages");
+        messages.innerHTML += `<li>${message}</li>`;
+      });
+    </script>
+  </body>
+</html>
