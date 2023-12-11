@@ -26,12 +26,9 @@
 
       // Listen for incoming messages
       socket.on("message", (data) => {
-        if (data.receiverId != userId) {
-          return;
-        }
         console.log("đã nhận được 1 tin nhắn ", data);
         var messages = document.getElementById("messages");
-        messages.innerHTML += `<li>${data.message}</li>`;
+        messages.innerHTML += `<li>${data}</li>`;
       });
     </script>
   </body>

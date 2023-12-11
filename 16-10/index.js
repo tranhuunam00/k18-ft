@@ -56,6 +56,22 @@ io.on("connection", (socket) => {
 
     io.emit("message", message);
   });
+  socket.on("join", (room) => {
+    // verify ai vào room
+    console.log("join vào ", room); //AB AC
+    //room + senderId + receiveid
+    socket.join(room);
+  });
+  socket.on("privateMessage", (message) => {
+    // {
+    //   "senderId":1, //là mình
+    //   "message":"chào em",
+    //   "receiverId":2, // là người nhận
+    //   "time":"2023-02-01 19:19:19" // khi ấn nút gửi
+    // }
+    console.log("runnnnn");
+    io.to("room1").emit("privateMessage", message);
+  });
 
   // Disconnect event
   socket.on("disconnect", () => {
