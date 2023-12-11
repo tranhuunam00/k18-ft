@@ -13,6 +13,7 @@
 
     <script>
       var socket = io("localhost:3001");
+      const userId = 2;
 
       // Send a message when the send button is clicked
       document.getElementById("send").addEventListener("click", () => {
@@ -24,10 +25,13 @@
       // socket trên server nhận => emit cho tất cả => gửi cả nó
 
       // Listen for incoming messages
-      socket.on("message", (message) => {
-        console.log("đã nhận được 1 tin nhắn ", message);
+      socket.on("message", (data) => {
+        if (data.receiverId != userId) {
+          return;
+        }
+        console.log("đã nhận được 1 tin nhắn ", data);
         var messages = document.getElementById("messages");
-        messages.innerHTML += `<li>${message}</li>`;
+        messages.innerHTML += `<li>${data.message}</li>`;
       });
     </script>
   </body>
