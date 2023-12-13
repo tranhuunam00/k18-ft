@@ -13,11 +13,6 @@ const orderProductSchema = new Schema(
       ref: "orders",
       require: true,
     },
-    customerId: {
-      type: mongoose.Types.ObjectId,
-      ref: "customers",
-      require: true,
-    },
     amount: {
       type: Number,
       require: true,
