@@ -34,8 +34,8 @@ const rooms = {
 
 const sockets = {};
 
-const server = app.listen(3000, function () {
-  console.log("Server is listening at 3000");
+const server = app.listen(3001, function () {
+  console.log("Server is listening at 3001");
 });
 
 const socket = require("socket.io");
