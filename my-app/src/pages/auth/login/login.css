@@ -1,0 +1,11 @@
+#login {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgb(170, 245, 245);
+  gap: 1rem;
+}
+#login .login_input {
+  max-width: 30rem;
+}
