@@ -1,0 +1,36 @@
+.InputTextCustom {
+  display: flex;
+  flex-direction: column;
+  max-width: 100%;
+}
+.InputTextCustom label {
+  font-size: 2rem;
+  font-weight: 500;
+}
+.InputTextCustom input {
+  padding: 5px;
+  border: 1px solid green;
+}
+.InputTextCustom input:focus {
+  border: 2px solid green;
+  outline: none;
+}
+.InputTextCustom img {
+  width: 2rem;
+  border-left: 1px solid #000;
+}
+
+.error_message {
+  color: red;
+  font-style: italic;
+  min-height: 2rem;
+}
+
+.border_red {
+  border: 1px solid red !important;
+}
+
+.border_red:focus {
+  border: 2px solid red !important;
+  outline: none;
+}
