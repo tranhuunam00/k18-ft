@@ -1,28 +1,28 @@
-// // delay
-// // callback
-// // setTimeout(() => { }, 5000)
+// delay
+// callback
+// setTimeout(() => { }, 5000)
 
-// // setInterval(() => { }, 1000)
+// setInterval(() => { }, 1000)
 
-// const promise = new Promise((resolve, reject) => {
-//   setTimeout(() => {
-//     resolve();
-//   }, 0);
-// });
+const promise = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    resolve();
+  }, 0);
+});
 
-// console.log(promise); // promise {undefined}
+console.log(promise); // promise {undefined}
 
-// promise
-//   .then((value) => {
-//     console.log("value", value); //  {undefined}
-//     return new Promise((res) => {
-//       setTimeout(() => {
-//         res("pass then 1....");
-//       }, 2000);
-//     });
-//   })
-//   .then((value) => console.log("value2", value));
-// console.log(promise); // promise {undefined}
+promise
+  .then((value) => {
+    console.log("value", value); //  {undefined}
+    return new Promise((res) => {
+      setTimeout(() => {
+        res("pass then 1....");
+      }, 2000);
+    });
+  })
+  .then((value) => console.log("value2", value));
+console.log(promise); // promise {undefined}
 
 // chạy dòng 7 promise đang ở trạng thái pending
 // dòng 8 : tạm dừng  => cho vào kho
