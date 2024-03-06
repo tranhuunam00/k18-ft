@@ -36,3 +36,13 @@
     transform: rotate(360deg);
   }
 }
+
+.popup{
+  background-color: rgba(195, 232, 195,0.5);
+  width: 200px;
+  height: 200px;
+  position: fixed;
+  left: 50%;
+  top:0 
+
+}
