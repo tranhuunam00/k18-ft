@@ -96,6 +96,8 @@ const Popup = ({ onTurnOff = () => {}, data = {} }) => {
 
       <input type="text" value={data.title} />
       <button>save</button>
+      <button>reload</button>
+
     </div>
   );
 };
