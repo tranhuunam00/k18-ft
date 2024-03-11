@@ -51,7 +51,7 @@ const signup = async (data, file) => {
   console.log("sign up RUNNING");
 
   const { name, email, password, dob, phoneNumber } = data;
-
+  console.log('data', data)
   // 1. verify data
   if (!name || !email || !password || !phoneNumber) {
     return {
