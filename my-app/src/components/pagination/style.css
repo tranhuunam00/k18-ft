@@ -1,0 +1,23 @@
+/** @format */
+
+.pagination {
+   display: flex;
+   justify-content: center;
+}
+.pagination_item {
+   padding: 5px;
+   border: 1px solid #333;
+   margin: 0 5px;
+}
+.pagination_item:nth-child(1) {
+}
+.active {
+   background-color: aqua;
+}
+.pagination_item:hover {
+   cursor: pointer;
+   background-color: rgba(25, 11, 11, 0.5);
+}
+.pagination_btn {
+   padding: 5px;
+}

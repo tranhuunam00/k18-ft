@@ -7,6 +7,7 @@ import SignInPage from './pages/auth/signin/signIn';
 
 import {ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import {Pagination} from './components/pagination/Pagination';
 
 function App() {
    return (
@@ -19,20 +20,25 @@ function App() {
 const Todo = () => {
    const [todos, setTodos] = useState([]);
    const [text, setText] = useState('');
-   const [page, setPage] = useState(0);
+   const [page, setPage] = useState(1);
    const [isPopup, setIsPopup] = useState(false);
    const [dataPopup, setDataPopup] = useState({});
    const oldData = useRef(dataPopup);
+   const [limit, setLimit] = useState(5);
+   const [totalRecords, setTotalRecords] = useState(0);
    console.log('oldData', oldData.current);
    useEffect(() => {
       console.log('heheh page laf', page);
       fetch('https://jsonplaceholder.typicode.com/todos')
          .then((response) => response.json())
-         .then((json) => setTodos(json.splice(0 + page * 10, 10)));
-   }, [page]);
+         .then((json) => {
+            setTotalRecords(json.length);
+            setTodos(json.splice(0 + (page - 1) * limit, limit));
+         });
+   }, [page, limit]);
 
    return (
-      <div style={{paddingLeft: '20%'}}>
+      <div style={{paddingLeft: '20%', paddingBottom: '50px'}}>
          <input value={text} onChange={(e) => setText(e.target.value)} type='text' />
 
          <button
@@ -87,6 +93,13 @@ const Todo = () => {
                setIsPopup={setIsPopup}
             />
          )}
+         <Pagination
+            totalRecords={totalRecords}
+            currentPage={page}
+            limit={limit}
+            setPage={setPage}
+            setLimit={setLimit}
+         />
       </div>
    );
 };
