@@ -8,7 +8,13 @@ export const FilterComponent = ({handleSearch, handleSelect}) => {
    // const [,setChecked]=useState(true)
    return (
       <div>
-         <input type='text' onChange={(e) => setValue(e.target.value)} />
+         <input
+            type='text'
+            onChange={(e) => {
+               setValue(e.target.value);
+               handleSearch(e.target.value);
+            }}
+         />
          <button onClick={() => handleSearch(value)}>Search</button>
          <h3>Trang thai</h3>
          <select

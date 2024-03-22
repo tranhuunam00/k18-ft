@@ -1,7 +1,8 @@
 /** @format */
 import './style.css';
 export const Pagination = ({totalRecords, currentPage, limit, setPage, setLimit}) => {
-   const totalPage = Number(totalRecords / limit);
+   let totalPage = Math.round(totalRecords / limit);
+   if (totalPage == 0) totalPage = 1;
    const array = [];
    for (let i = 1; i <= totalPage; i++) {
       array.push(i);
