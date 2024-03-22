@@ -8,6 +8,9 @@ import SignInPage from './pages/auth/signin/signIn';
 import {ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {Pagination} from './components/pagination/Pagination';
+import {LoadMore} from './components/loadMore/LoadMore';
+import {getDataMock} from './mock/indexMock';
+import {FilterComponent} from './components/filter';
 
 function App() {
    return (
@@ -24,43 +27,53 @@ const Todo = () => {
    const [isPopup, setIsPopup] = useState(false);
    const [dataPopup, setDataPopup] = useState({});
    const oldData = useRef(dataPopup);
-   const [limit, setLimit] = useState(5);
+   const [limit, setLimit] = useState(10);
    const [totalRecords, setTotalRecords] = useState(0);
-   console.log('oldData', oldData.current);
+   const [maxIndex, setMaxIndex] = useState(0);
+   const [filter, setFilter] = useState({});
    useEffect(() => {
       console.log('heheh page laf', page);
-      fetch('https://jsonplaceholder.typicode.com/todos')
-         .then((response) => response.json())
-         .then((json) => {
-            setTotalRecords(json.length);
-            setTodos(json.splice(0 + (page - 1) * limit, limit));
-         });
-   }, [page, limit]);
+      getDataMock({...filter}, {page: page, limit: limit}).then((data) => {
+         setTotalRecords(data.count);
+         setTodos(data.data);
+      });
+   }, [page, limit, filter]);
+
+   // useEffect(() => {
+   //    // fetchData();
+   //    getDataMock({...filter}).then((json) => {
+   //       const newTodos = json.filter((data, index) => data.id > maxIndex);
+   //       const todos2 = newTodos.splice(0, limit);
+   //       setTodos(todos.concat(todos2));
+   //    });
+   // }, [maxIndex]);
 
    return (
       <div style={{paddingLeft: '20%', paddingBottom: '50px'}}>
-         <input value={text} onChange={(e) => setText(e.target.value)} type='text' />
-
-         <button
-            onClick={() => {
-               const newTotos = [...todos];
-               newTotos.push({
-                  userId: 1,
-                  id: new Date().getTime(),
-                  title: text,
+         <FilterComponent
+            handleSearch={(value) => {
+               setFilter({
+                  ...filter,
+                  keySearch: value,
                });
-               setTodos(newTotos);
-               setText('');
+               setPage(1);
             }}
-         >
-            save
-         </button>
+            handleSelect={(value) => {
+               setFilter({
+                  ...filter,
+                  completed: value,
+               });
+               setPage(1);
+            }}
+         />
+         {/* <input value={text} onChange={(e) => setText(e.target.value)} type='text' /> */}
+
          {todos.map((todo, index) => {
             return (
                <div key={todo.id}>
                   <h3>id: {todo.id}</h3>
                   <h3>title: {todo.title}</h3>
-
+                  <h3>completed:{todo.completed.toString()}</h3>
                   <button
                      onClick={
                         !isPopup
@@ -93,6 +106,15 @@ const Todo = () => {
                setIsPopup={setIsPopup}
             />
          )}
+         {/* <LoadMore
+            handleSetMaxIndex={() => {
+               let max = todos[0].id;
+               for (let todo of todos) {
+                  if (todo.id > max) max = todo.id;
+               }
+               setMaxIndex(max);
+            }}
+         /> */}
          <Pagination
             totalRecords={totalRecords}
             currentPage={page}
